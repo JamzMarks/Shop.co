@@ -10,11 +10,10 @@
     display: grid;
     grid-template-areas:
       "newsletter"
-      "gapTop"
       "upperFooter"
       "gapBottom"
       "bottomFooter";
-    grid-template-rows: 150px 32px auto 16px auto;
+    grid-template-rows: 150px auto 16px auto;
     grid-template-columns: 1fr;
   }
   

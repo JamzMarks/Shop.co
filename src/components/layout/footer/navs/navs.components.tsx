@@ -1,4 +1,4 @@
-import styles from './navs.module.css';
+import styles from './navs.module.scss';
 import globals from '../../../../assets/styles/globalStyles.module.css';
 function Navs() {
   return (

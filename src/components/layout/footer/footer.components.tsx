@@ -1,4 +1,4 @@
-import styles from './footer.module.css';
+import styles from './footer.module.scss';
 import global from '../../../assets/styles/globalStyles.module.css';
 import Newsletter from './newsletter/newsletter';
 import Payments from './payments/payments';
