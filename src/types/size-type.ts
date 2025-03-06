@@ -1,0 +1,1 @@
+export type Size = 'Small' | 'Medium' | 'Large' | 'X-Large';

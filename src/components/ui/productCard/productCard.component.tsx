@@ -1,19 +1,16 @@
 import styles from './productCard.module.scss';
+import { Product } from '../../../types/product.interface';
 
-function ProductCard(){
-    const product = {
-        id: 6,
-        title: "SKINNY FIT JEANS 2",
-        price: 350,
-        image: "assets/images/products/pants1.png",
-        discount: 15,
-        rating: 3
-      }
+interface ProductCardProps {
+    product: Product;
+}
+
+function ProductCard({product}: ProductCardProps){
 
     return(
         <article className={styles.productCard}>
             <div className={styles.image}>
-                <img src={product.image} alt={product.title} />
+                <img src={product.image[0]} alt={product.title} />
             </div>
             <div className={styles.details}>
                 <h3 className={styles.title}><a href="">{product.title}</a></h3>
