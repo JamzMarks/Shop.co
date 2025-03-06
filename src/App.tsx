@@ -2,7 +2,7 @@ import './App.css'
 import Footer from './components/layout/footer/footer.components'
 import Navigation from './components/layout/navigation/navigation.component'
 import SignMsg from './components/common/signMsg/signMsg.component'
-// import ProductCard from './components/productCard/productCard.component'
+import Home from './pages/home/home.component'
 function App() {
 
   return (
@@ -12,7 +12,7 @@ function App() {
         <Navigation></Navigation>
       </header>
       <main>
-        {/* <ProductCard></ProductCard> */}
+        <Home></Home>
       </main>
       <Footer></Footer>
     </>

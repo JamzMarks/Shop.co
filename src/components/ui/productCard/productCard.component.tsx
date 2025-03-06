@@ -1,4 +1,4 @@
-
+import styles from './productCard.module.scss';
 
 function ProductCard(){
     const product = {
@@ -11,22 +11,22 @@ function ProductCard(){
       }
 
     return(
-        <article className="productCard">
-            <div className="img-container">
+        <article className={styles.productCard}>
+            <div className={styles.image}>
                 <img src={product.image} alt={product.title} />
             </div>
-            <div className="details">
-                <h3><a href="">{product.title}</a></h3>
-                <div className="rate-wrapper">
+            <div className={styles.details}>
+                <h3 className={styles.title}><a href="">{product.title}</a></h3>
+                <div className={styles.rateWrapper}>
                     <div className="star-wrapper">
-
+                        
                     </div>
                     <p>{product.rating}/5</p>
                 </div>
-                <div className="price-wrapper">
-                    <p>{product.price}</p>
-                    <p>{product.price}</p>
-                    <div className="discount">
+                <div className={styles.priceWrapper}>
+                    <p className={styles.price}>{product.price}</p>
+                    <p className={styles.discount}>{product.price}</p>
+                    <div className={styles.percentage}>
                         <span>{product.discount}</span>
                     </div>
                 </div>

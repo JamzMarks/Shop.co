@@ -2,16 +2,14 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 :root {
   --primary-color: #000;
   --secondary-color: #fff;
@@ -25,10 +23,12 @@
   --padding-common: 0 16px;
   --padding-desktop: 0 20px;
   --font-main: 'Satoshi';
-  --font-secundary: 'IntegralFC';
+  --font-secundary: "IntegralCF";
+  --section-title-weith: 700;
   --backgroundCcolor-grey: #f0f0f0;
   --margin-auto: 0 auto;
 }
+
 *{
   box-sizing: border-box;
   margin: 0;

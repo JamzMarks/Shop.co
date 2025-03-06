@@ -13,8 +13,8 @@ function Navs() {
           </p>
         </div>
         <div className="socials">
-          <ul className="socialsList">
-            <li className="socialsBack">
+          <ul className={styles.socialsList}>
+            <li className={styles.socialItem}>
               <a href="twitter.com">
                 <img
                   src="assets\images\icons\socials\twitter.svg"
@@ -22,7 +22,7 @@ function Navs() {
                 />
               </a>
             </li>
-            <li className="socialsBack">
+            <li className={styles.socialItem}>
               <a href="facebook.com">
                 <img
                   src="assets\images\icons\socials\facebook.svg"
@@ -30,7 +30,7 @@ function Navs() {
                 />
               </a>
             </li>
-            <li className="socialsBack">
+            <li className={styles.socialItem}>
               <a href="instagram.com">
                 <img
                   src="assets\images\icons\socials\instagram.svg"
@@ -38,7 +38,7 @@ function Navs() {
                 />
               </a>
             </li>
-            <li className="socialsBack">
+            <li className={styles.socialItem}>
               <a href="github.com">
                 <img
                   src="assets\images\icons\socials\github.svg"
@@ -49,71 +49,71 @@ function Navs() {
           </ul>
         </div>
       </div>
-      <div className="linksContainer">
-        <div className="linkItem">
-          <p className="title">Company</p>
-          <ul className="linkList">
-            <li className="link">
+      <div className={styles.linksContainer}>
+        <div className={styles.linkItem}>
+          <p className={styles.linkTitle}>Company</p>
+          <ul className={styles.linkList}>
+            <li className={styles.link}>
               <a href="/about">About</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/features">Features</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/works">Works</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/carrer">Carrer</a>
             </li>
           </ul>
         </div>
-        <div className="linkItem">
-          <p className="title">Help</p>
-          <ul className="linkList">
-            <li className="link">
+        <div className={styles.linkItem}>
+          <p className={styles.linkTitle}>Help</p>
+          <ul className={styles.linkList}>
+            <li className={styles.link}>
               <a href="/support">Customer Support</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/delivery">Delivery Details</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/terms">Terms & Conditions</a>{" "}
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/privacy">Privacy Policy</a>
             </li>
           </ul>
         </div>
-        <div className="linkItem">
-          <p className="title">FAQ</p>
-          <ul className="linkList">
-            <li className="link">
+        <div className={styles.linkItem}>
+          <p className={styles.linkTitle}>FAQ</p>
+          <ul className={styles.linkList}>
+            <li className={styles.link}>
               <a href="/account">Account</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/manage">Manage Deliveries</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/orders">Orders</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="/payments">Payments</a>
             </li>
           </ul>
         </div>
-        <div className="linkItem">
-          <p className="title">Resources</p>
-          <ul className="linkList">
-            <li className="link">
+        <div className={styles.linkItem}>
+          <p className={styles.linkTitle}>Resources</p>
+          <ul className={styles.linkList}>
+            <li className={styles.link}>
               <a href="ebooks/free">Free eBooks</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="tutorial-development">Development Tutorial</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="blog/howto">How to - Blog</a>
             </li>
-            <li className="link">
+            <li className={styles.link}>
               <a href="youtube.com/playlist">Youtube Playlist</a>
             </li>
           </ul>
@@ -122,4 +122,4 @@ function Navs() {
     </section>
   );
 }
-export default Navs;
+export default Navs;    

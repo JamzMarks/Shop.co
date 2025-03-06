@@ -1,8 +1,8 @@
-import './navigation.css'
+import styles from './navigation.module.scss'
 
 function Navigation(){
     return(
-        <nav className="navigation">
+        <nav className={styles.navigation}>
             <div className="logo-container">
                 <div className="hamburguerMenu">
                     <button type="button" className="displayNoneMobile" id="menuButton">

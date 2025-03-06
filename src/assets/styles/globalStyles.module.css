@@ -1,3 +1,5 @@
+@import url('./fonts.css');
+
 .container{
     width: 100%;
     max-width: var(--max-width);
@@ -5,11 +7,10 @@
     margin: var(--margin-auto);
 }
 
-
 .logo {
     font-family: "IntegralCF";
     font-weight: 700;
     text-transform: uppercase;
     font-size: 25px;
     color: var(--text-color);
-  }
+}

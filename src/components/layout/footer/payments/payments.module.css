@@ -42,10 +42,8 @@
       width: 46px;
       height: 30px;
     } 
-}
-@media (min-width: 1024px) {
     .wrapper {
-        flex-direction: row;
-        justify-content: space-between;
-      }
+      flex-direction: row;
+      justify-content: space-between;
+    }
 }
