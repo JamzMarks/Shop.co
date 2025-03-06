@@ -1,0 +1,22 @@
+
+.nav {
+  display: none;
+  list-style: none;
+}
+.link a {
+  font-size: 16px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+.link a:hover {
+  color: #85888c;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+}

@@ -9,8 +9,8 @@ function Home(){
         <>
             <Thumb></Thumb>
             <Brands></Brands>
-            <ProductCard></ProductCard>
             <div className={global.container}>
+                <ProductCard></ProductCard>
                 <Category></Category>
             </div>
         </>

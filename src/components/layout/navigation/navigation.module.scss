@@ -10,27 +10,18 @@
     grid-template-rows: 1fr;
     min-height: 64px;
   }
-  .searchBar {
-    display: flex;
-    width: 100%;
-  }
-  .searchBar input {
-    background-color: #f0f0f0;
-  }
-  .logo-container,
-  .navBtns {
+  
+  .logo-container {
     display: flex;
     align-items: center;
     height: 100%;
     gap: 12px;
     transition: 0.2s ease-in;
-  }
-  .navBtns {
-    justify-content: right;
+    justify-content: left;
   }
   
   .logo-container {
-    justify-content: left;
+    
   }
   .navBtn img{
     align-self: center;
@@ -121,16 +112,8 @@
   .searchMobile {
     color: black;
   }
-  .searchBar,
-  .navLinks {
+  .searchBar{
     display: none;
-  }
-  .navLinks .links a {
-    font-size: 16px;
-    transition: 0.2s ease;
-  }
-  .navLinks .links a:hover {
-    color: #85888c;
   }
 
   @media (min-width: 768px) {
@@ -147,8 +130,7 @@
       grid-template-columns: auto auto 1fr;
       gap: 40px;
     }
-    .searchBar,
-    .navLinks {
+    .searchBar {
       display: flex;
       align-items: center;
       justify-content: center;

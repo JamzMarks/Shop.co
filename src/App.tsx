@@ -2,7 +2,7 @@ import './App.css'
 import Footer from './components/layout/footer/footer.components'
 import Navigation from './components/layout/navigation/navigation.component'
 import SignMsg from './components/common/signMsg/signMsg.component'
-import Home from './pages/home/home.component'
+import AppRoutes from './routes/routes'
 function App() {
 
   return (
@@ -12,7 +12,7 @@ function App() {
         <Navigation></Navigation>
       </header>
       <main>
-        <Home></Home>
+        <AppRoutes></AppRoutes>
       </main>
       <Footer></Footer>
     </>

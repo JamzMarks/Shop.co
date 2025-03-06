@@ -1,3 +1,4 @@
+import ListLinks from './links/listLinks.component';
 import styles from './navigation.module.scss'
 
 function Navigation(){
@@ -24,12 +25,7 @@ function Navigation(){
                 </div>
                 <h1 className="logo">Shop.co</h1>
             </div>
-            <ul className="navLinks">
-                <li className="links"><a>Shop <span><img src="assets\images\icons\arrows\bottomArrow.svg" alt="bottomArrow"/></span> </a></li>
-                <li className="links"><a>On Sale</a></li>
-                <li className="links"><a>New Arrivals</a></li>
-                <li className="links"><a>Brands</a></li>
-            </ul>
+            <ListLinks></ListLinks>
             <div className="navBtns">
                 <div className="searchBar">
                     <input type="text" placeholder="Search for products..." className="inputFields search"/>
