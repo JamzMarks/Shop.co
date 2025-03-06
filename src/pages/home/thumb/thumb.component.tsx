@@ -12,7 +12,7 @@ function Thumb(){
                         <Button
                             type='button'
                             text='Shop Now'
-                            btnStyle='black'
+                            btnStyle='black2'
                         />
                     </div>
                     <div className={styles.numbers}>

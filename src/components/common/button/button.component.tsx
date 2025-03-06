@@ -3,7 +3,7 @@ import styles from './button.module.scss';
 interface Button{
     type: "submit" | "reset" | "button" | undefined,
     text: string,
-    btnStyle: "white" | "black" | "white2",
+    btnStyle: "white" | "black" | "white2" | "black2",
     onClick?: () => void;
 
 }

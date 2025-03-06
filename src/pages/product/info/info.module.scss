@@ -2,7 +2,7 @@
     .image{
         background-color: #F0EEED;
         border-radius: 20px;
-        max-height: 290px;
+        // max-height: 290px;
         display: flex;
         justify-content: center;
         img{
@@ -17,7 +17,7 @@
       width: 100%;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      
+      border-radius: 20px;
       img{
         border-radius: 20px;
         object-fit: cover;
@@ -108,8 +108,13 @@
                         align-items: center;
                         border-radius: 62px;
                         height: 39px;
-                        
-                    }                  
+                        transition: 0.1s ease;
+                    }
+                    label:hover,
+                    input[type="radio"]:checked + label {
+                        background-color: black;
+                        color: white;
+                      }                  
                     input{
                         display: none;
                     }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../../../components/common/button/button.component";
 // import { Product } from "../../../types/product.interface";
 import styles from "./info.module.scss";
+import ImageShow from "./imageShow/imageShow.component";
 
 // interface ProductItem {
 //   product?: Product;
@@ -14,22 +15,7 @@ function ProductInfo() {
   // const [selectedSize, setselectedSize] = useState<string>(sizes[0]);
   return (
     <section className={styles.product}>
-      <div className={styles.imageWrapper}>
-        <div className={styles.image}>
-          <img src="public\assets\images\products\jeans2.png" alt="foto" />
-        </div>
-        <div className={styles.listImage}>
-            <div className={styles.item}>
-                <img src="public\assets\images\products\jeans2.png" alt="foto" />
-            </div>
-            <div className={styles.item}>
-                <img src="public\assets\images\products\jeans2.png" alt="foto" />
-            </div>
-            <div className={styles.item}>
-                <img src="public\assets\images\products\jeans2.png" alt="foto" />
-            </div>
-        </div>
-      </div>
+      <ImageShow></ImageShow>
       <div className={styles.info}>
         <div className={styles.details}>
           <div className={styles.upper}>
