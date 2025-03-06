@@ -1,3 +1,4 @@
+import Button from '../../../components/common/button/button.component';
 import styles from './thumb.module.scss';
 
 function Thumb(){
@@ -8,7 +9,11 @@ function Thumb(){
                     <div className={styles.info}>
                         <h2 className={styles.title}>Find clothes that matches your style</h2>
                         <p className={styles.paragraph}>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
-                        <button type="button" className="btns btnBlack">Shop Now</button>
+                        <Button
+                            type='button'
+                            text='Shop Now'
+                            btnStyle='black'
+                        />
                     </div>
                     <div className={styles.numbers}>
                         <dl className={styles.list}>

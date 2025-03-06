@@ -14,3 +14,9 @@
     font-size: 25px;
     color: var(--text-color);
 }
+
+@media (min-width: 768px) {
+    .logo{
+        font-size: 32px;
+    }
+}

@@ -3,6 +3,7 @@ import styles from './productList.module.scss';
 import {Product} from '../../../types/product.interface';
 import { fetchData } from '../../../services/dataService';
 import ProductCard from '../../ui/productCard/productCard.component';
+import Button from '../../common/button/button.component';
 
 interface ProductListProps {
     title: string;
@@ -40,7 +41,11 @@ function ProductList({title}: ProductListProps){
                     />
                 ))}
             </div>
-            <button type="button" id="newProducts" className="productListBtn btns btnWhite">View all</button>
+            <Button
+                type="button"
+                text='View All'
+                btnStyle='white'
+            />
         </section>
     )
 }

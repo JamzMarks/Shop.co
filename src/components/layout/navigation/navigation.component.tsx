@@ -1,5 +1,7 @@
 import ListLinks from './links/listLinks.component';
+import NavButtons from './navButton/navButton.component';
 import styles from './navigation.module.scss'
+import globals from '../../../assets/styles/globalStyles.module.css';
 
 function Navigation(){
     return(
@@ -23,17 +25,10 @@ function Navigation(){
                           </div>
                     </button>
                 </div>
-                <h1 className="logo">Shop.co</h1>
+                <h1 className={globals.logo}>Shop.co</h1>
             </div>
             <ListLinks></ListLinks>
-            <div className="navBtns">
-                <div className="searchBar">
-                    <input type="text" placeholder="Search for products..." className="inputFields search"/>
-                </div>
-                <button type="button" className="navBtn searchMobile"><img src="assets\images\icons\search\blackSearch.svg" alt="search"/></button>
-                <button type="button" className="navBtn"><img src="assets\images\icons\cart.svg" alt="cart"/></button>
-                <button type="button" className="navBtn"><img src="assets\images\icons\user.svg" alt="profile picture"/></button>
-            </div>
+            <NavButtons></NavButtons>
         </nav>
     )
 }

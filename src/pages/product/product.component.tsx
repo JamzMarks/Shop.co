@@ -1,11 +1,12 @@
+import ProductInfo from './info/info.component';
+import styles from './product.module.scss';
 
-
-function Product(){
+function ProductPage(){
     return(
-        <>
-            <h1>Product</h1>
-        </>
+        <section className={styles.content}>
+            <ProductInfo></ProductInfo>
+        </section>
     )
 }
 
-export default Product;
+export default ProductPage;
