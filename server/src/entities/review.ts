@@ -1,14 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
-import { Product } from "./product";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Product)
-  @JoinColumn({ name: "productId" }) 
-  productId: Product;  
+  @Column()
+  productId: number;  
 
   @Column()
   user: string;
@@ -19,6 +17,6 @@ export class Review {
   @Column({ type: "decimal", default: 0 })
   rating: number;
 
-  @Column()
-  date: Date
+  @CreateDateColumn({ type: 'text' }) 
+  date: Date;
 }

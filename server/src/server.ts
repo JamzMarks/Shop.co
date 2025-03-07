@@ -1,11 +1,15 @@
 import 'reflect-metadata';
 import express, { Request, Response } from "express";
-import { DataSource } from 'typeorm';
+import { DataSource, Equal } from 'typeorm';
 import { Product } from "./entities/product";
 import { Review } from "./entities/review";
+import { upload } from './multer';
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
+const uploadMiddleware = upload.array('images', 3);
 
 const dataSource = new DataSource({
     type: "sqlite",   
@@ -23,14 +27,39 @@ const dataSource = new DataSource({
       console.error("Erro ao conectar com o banco de dados:", error);
     } 
 } 
-app.post('/product', asyncHandler(async (req, res) => {
-    const { title, price, image, rating, description, color, size, category, dress, discount } = req.body;
+
+app.get('/product', async (req: Request, res: Response) => {
+    try {
+        const products = await dataSource.getRepository(Product).find();
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar produtos." });
+    }
+})
+app.get('/product/:id', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+        const product = await dataSource.getRepository(Product).findOneBy({ id: parseInt(id) });
+        if (!product) {
+            res.status(404).json({ message: "Produto não encontrado." });
+            return;
+        }
+            res.status(200).json(product);
+
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar produtos." });
+    }
+})
+app.post('/product', uploadMiddleware, async (req: Request, res: Response) => {
+    const { title, price, rating, description, color, size, category, dress, discount } = req.body;
+
+    const images = (req.files as Express.Multer.File[]).map((file) => `/uploads/${file.filename}`) || [];
     try {
 
         const product = new Product();
             product.title = title; 
             product.price = price;
-            product.image = image;
+            product.image = images;
             product.rating = rating;
             product.description = description;
             product.color = color;
@@ -42,37 +71,70 @@ app.post('/product', asyncHandler(async (req, res) => {
             }
 
         await dataSource.getRepository(Product).save(product);
-        return res.status(201).json(product);
+        res.status(201).json(product);
 
     } catch (error) {
-        console.error("Erro ao adicionar product:", error);
-        return res.status(500).json({ message: "Erro ao adicionar product." });
+        res.status(500).json({ message: "Erro ao adicionar product." });
     }
-}));
+});
 
-app.post('/reviews', asyncHandler(async (req, res) => {
-    const { productId, user, review, rating, date } = req.body;
+app.get('/review', async (req: Request, res: Response) => {
+    try {
+        const reviews = await dataSource.getRepository(Review).find();
+        res.status(200).json(reviews);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar Review." });
+    }
+})
+app.get('/review/:id', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+        const review = await dataSource.getRepository(Review).findOneBy({ id: parseInt(id) });
+        if (!review) {
+            res.status(404).json({ message: "Review não encontrado." });
+        }
+            res.status(200).json(review);
+
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar review." });
+    }
+})
+app.get('/review/product/:item', async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+        const reviews = await dataSource.getRepository(Review).find({where: { productId: Equal(parseInt(id)) },
+        });
+        if (!reviews) {
+            res.status(404).json({ message: "Review não encontrado." });
+        }
+            res.status(200).json(reviews);
+
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar reviews do produto." });
+    }
+})
+app.post('/review', uploadMiddleware, async (req: Request, res: Response): Promise<void> => {
+    const { productId, user, review, rating } = req.body;
     try {
         const product = await dataSource.getRepository(Product).findOneBy({ id: productId });
-
         if (!product) {
-            return res.status(404).json({ message: "Produto não encontrado." });
+            res.status(404).json({ message: "Produto não encontrado." });
+            return;
         }
         const newReview = new Review();
-        newReview.productId = product; 
+        newReview.productId = productId; 
         newReview.user = user;
         newReview.review = review;
         newReview.rating = rating;
-        newReview.date = date;
+        newReview.date = new Date();
 
         await dataSource.getRepository(Review).save(newReview);
-        return res.status(201).json(newReview);
+        res.status(201).json(newReview);
 
     } catch (error) {
-        console.error("Erro ao adicionar review:", error);
-        return res.status(500).json({ message: "Erro ao adicionar review." });
+        res.status(500).json({ message: "Erro ao adicionar review." });
     }
-}));
+});
 
 initializeDatabase().then(() => {
     const port = 3000;
@@ -81,6 +143,3 @@ initializeDatabase().then(() => {
     });
   });
 
-function asyncHandler(arg0: (req: any, res: any) => Promise<any>): import("express-serve-static-core").RequestHandler<{}, any, any, import("qs").ParsedQs, Record<string, any>> {
-    throw new Error('Function not implemented.');
-}
