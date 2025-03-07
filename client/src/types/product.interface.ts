@@ -1,3 +1,5 @@
+import { Dress } from './dress-type';
+import { Category } from "./category-type";
 import { Size } from "./size-type";
 
 export interface Product{
@@ -5,11 +7,13 @@ export interface Product{
     title: string
     price: number,
     image: string[],
-    discount: number,
     rating: number,
     description: string,
     color: string[],
-    size: Size[]
+    size: Size[],
+    category: Category,
+    dress: Dress,
+    discount?: number
 }
 
 export interface ProductCart{
