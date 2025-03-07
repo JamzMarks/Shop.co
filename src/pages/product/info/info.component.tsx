@@ -3,6 +3,7 @@ import Button from "../../../components/common/button/button.component";
 // import { Product } from "../../../types/product.interface";
 import styles from "./info.module.scss";
 import ImageShow from "./imageShow/imageShow.component";
+import StarRating from "../../../components/common/rate/starRating";
 
 // interface ProductItem {
 //   product?: Product;
@@ -20,10 +21,9 @@ function ProductInfo() {
         <div className={styles.details}>
           <div className={styles.upper}>
             <h3 className={styles.title}>Um titulo</h3>
-            <div className={styles.rateWrapper}>
-              <div className={styles.stars}></div>
-              <p>3/5</p>
-            </div>
+            <StarRating
+              rate={3}
+            />
             <div className={styles.priceWrapper}>
               <p className={styles.price}>$123</p>
               <p className={styles.discount}>$123</p>

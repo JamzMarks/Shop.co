@@ -1,5 +1,6 @@
 import styles from './productCard.module.scss';
 import { Product } from '../../../types/product.interface';
+import StarRating from '../../common/rate/starRating';
 
 interface ProductCardProps {
     product: Product;
@@ -14,12 +15,9 @@ function ProductCard({product}: ProductCardProps){
             </div>
             <div className={styles.details}>
                 <h3 className={styles.title}><a href="">{product.title}</a></h3>
-                <div className={styles.rateWrapper}>
-                    <div className={styles.stars}>
-                        
-                    </div>
-                    <p>{product.rating}/5</p>
-                </div>
+                <StarRating
+                    rate={product.rating}
+                />
                 <div className={styles.priceWrapper}>
                     <p className={styles.price}>{product.price}</p>
                     {product.discount !== 0 && (
