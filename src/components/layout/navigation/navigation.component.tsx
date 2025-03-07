@@ -16,12 +16,7 @@ function Navigation(){
                                 <span></span>
                                 <span></span>
                             </label>
-                            <ul className="menuMobile">
-                              <li className="links"><a href="/shop">Shop</a></li>
-                              <li className="links"><a href="/onsale">On Sale </a></li>
-                              <li className="links"><a href="/news">New Arrivals</a></li>
-                              <li className="links"><a href="/brands">Brands</a></li>
-                            </ul>
+                            <ListLinks></ListLinks>
                           </div>
                     </button>
                 </div>

@@ -57,7 +57,7 @@ function Cart(){
                                 <p className={styles.price}>$15</p> 
                             </div>
                             <div className={`${styles.orderItem} ${styles.total}`}>
-                                <p>Delivery Fee</p>
+                                <p>Total</p>
                                 <p className={styles.price}>$15</p> 
                             </div>
                         </div>
