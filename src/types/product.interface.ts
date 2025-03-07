@@ -11,3 +11,13 @@ export interface Product{
     color: string[],
     size: Size[]
 }
+
+export interface ProductCart{
+    id: number,
+    title: string
+    price: number,
+    image: string,
+    discount: number,
+    color: string,
+    size: Size
+}

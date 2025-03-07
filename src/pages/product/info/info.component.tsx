@@ -4,7 +4,7 @@ import Button from "../../../components/common/button/button.component";
 import styles from "./info.module.scss";
 import ImageShow from "./imageShow/imageShow.component";
 import StarRating from "../../../components/common/rate/starRating";
-
+import IncreaseButton from "../../../components/common/increaseButton/increaseButton.component";
 // interface ProductItem {
 //   product?: Product;
 // }
@@ -12,11 +12,17 @@ import StarRating from "../../../components/common/rate/starRating";
 const colorsRadio = ["#ff0000", "#00ff00", "#0000ff"]; // Vermelho, Verde, Azul
 function ProductInfo() {
   const [selectedColor, setSelectedColor] = useState<string>(colorsRadio[0]);
-  const [qtd, setQtd] = useState(1);
   // const [selectedSize, setselectedSize] = useState<string>(sizes[0]);
+  const images: string[] = [
+    "/assets/images/products/jeans2.png",
+    "/assets/images/products/shirt1.png",
+    "/assets/images/products/jeans3.png",
+  ];
   return (
     <section className={styles.product}>
-      <ImageShow></ImageShow>
+      <ImageShow
+        images={images}
+      />
       <div className={styles.info}>
         <div className={styles.details}>
           <div className={styles.upper}>
@@ -88,21 +94,8 @@ function ProductInfo() {
             </div>
           </div>
           <div className={styles.buttons}>
-            <div className={styles.qtdBtn}>
-              <button
-                className={styles.qtdFunc}
-                onClick={() => setQtd((prev) => Math.max(prev - 1, 0))}
-              >
-                -
-              </button>
-              <span className={styles.value}>{qtd}</span>
-              <button
-                className={styles.qtdFunc}
-                onClick={() => setQtd((prev) => prev + 1)}
-              >
-                +
-              </button>
-            </div>
+            <IncreaseButton/>
+            
             <Button type="submit" text="Add to Cart" btnStyle="black" />
           </div>
         </div>

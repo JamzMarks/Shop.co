@@ -23,8 +23,18 @@
     padding-left: 40px;
     background: url('../../../assets/images/icons/search/search.svg') no-repeat 10px center; 
 }
+.promo{
+    border: none;
+    padding-left: 40px;
+    background: url('../../../assets/images/icons/promo.svg') no-repeat 10px center;
+}
 .white{
     background-color: #fff;
+    color: #00000066;
+    font-weight: 400;
+}
+.gray{
+    background-color: #F0F0F0;
     color: #00000066;
     font-weight: 400;
 }

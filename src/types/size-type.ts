@@ -1,1 +1,6 @@
-export type Size = 'Small' | 'Medium' | 'Large' | 'X-Large';
+export enum Size {
+    Small = 'Small',
+    Medium = 'Medium',
+    Large = 'Large',
+    XLarge = 'X-Large'
+}

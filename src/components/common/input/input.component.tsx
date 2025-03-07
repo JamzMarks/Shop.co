@@ -7,7 +7,7 @@ interface InputProps {
     inputStyle: "white" | "black" | "gray";
     value: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    inputIcon?: "search" | "email";
+    inputIcon?: "search" | "email" | "promo";
   }
   
 
