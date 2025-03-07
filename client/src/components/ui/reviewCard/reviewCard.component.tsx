@@ -19,6 +19,7 @@ function ReviewCard(){
         <article className={styles.reviewCard}>
             <StarRating
                 rate={review.rating}
+                showRate={false}
             />
             <div className={styles.user}>
                 <p className={styles.name}>{review.user}</p>

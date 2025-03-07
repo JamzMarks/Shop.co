@@ -29,6 +29,7 @@ function ProductInfo() {
             <h3 className={styles.title}>Um titulo</h3>
             <StarRating
               rate={3}
+              showRate={true}
             />
             <div className={styles.priceWrapper}>
               <p className={styles.price}>$123</p>

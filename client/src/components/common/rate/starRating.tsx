@@ -3,9 +3,10 @@ import { isDecimal } from "../../../utils/validator/decimal.validator";
 
 interface StarRatingProps {
   rate: number;
+  showRate: boolean
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rate }) => {
+const StarRating: React.FC<StarRatingProps> = ({ rate, showRate }) => {
   const fullStars = Math.floor(rate);
   const hasHalfStar = isDecimal(rate);
 
@@ -19,7 +20,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rate }) => {
           <img src="/assets/images/icons/stars/starPart.svg" alt="Half Star" className={styles.starIcon} />
         )}
       </div>
-      <p>{rate}/5</p>
+      {showRate && <p>{rate}/5</p>}  
     </div>
   );
 };

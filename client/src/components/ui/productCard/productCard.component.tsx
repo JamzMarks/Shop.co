@@ -17,6 +17,7 @@ function ProductCard({product}: ProductCardProps){
                 <h3 className={styles.title}><a href="">{product.title}</a></h3>
                 <StarRating
                     rate={product.rating}
+                    showRate={true}
                 />
                 <div className={styles.priceWrapper}>
                     <p className={styles.price}>{product.price}</p>
