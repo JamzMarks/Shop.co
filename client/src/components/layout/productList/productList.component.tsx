@@ -4,13 +4,17 @@ import {Product} from '../../../types/product.interface';
 import { getProduct } from '../../../services/dataService';
 import ProductCard from '../../ui/productCard/productCard.component';
 import Button from '../../common/button/button.component';
+import { productSlice } from '../../../utils/sliceArr';
 
 interface ProductListProps {
     title: string;
     viewAll: boolean;
+    max: number
   }
 
-function ProductList({title, viewAll}: ProductListProps){
+
+
+function ProductList({title, viewAll, max}: ProductListProps){
     const [prodcuts, setProducts] = useState<Product[]>([]);
     const [error, setError] = useState<string | null>(null);
 
@@ -34,7 +38,7 @@ function ProductList({title, viewAll}: ProductListProps){
         <section className={styles.container}>
             <h2 className={styles.title}>{title}</h2>
             <div className={styles.productList}>
-                {prodcuts.map((item) => (
+                {productSlice(prodcuts, max).map((item) => (
                     <ProductCard
                         key={item.id}
                         product={item}

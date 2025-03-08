@@ -3,6 +3,7 @@ import { Product } from '../../../types/product.interface';
 import StarRating from '../../common/rate/starRating';
 import { getImagePath, getRandomImage } from '../../../utils/getImage';
 import { Link } from 'react-router-dom';
+import { getDiscountPrice } from '../../../utils/getDiscountPrice';
 interface ProductCardProps {
     product: Product;
 }
@@ -20,7 +21,9 @@ function ProductCard({product}: ProductCardProps){
                     showRate={true}
                 />
                 <div className={styles.priceWrapper}>
-                    <p className={styles.price}>{product.price}</p>
+                    <p className={styles.price}>{getDiscountPrice(
+                                    product.price, product.discount ? product.discount : 0 
+                                    )}</p>
                     {product.discount !== 0 && (
                        <>
                         <p className={styles.discount}>{product.price}</p>

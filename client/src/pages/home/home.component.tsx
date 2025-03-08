@@ -15,10 +15,12 @@ function Home(){
                 <ProductList
                     title="New Arrivals"
                     viewAll={true}
+                    max={4}
                 />
                 <ProductList
                     title="Top selling"
                     viewAll={true}
+                    max={4}
                 />
                 <Category></Category>
                 <div className={styles.reviewsSection}>

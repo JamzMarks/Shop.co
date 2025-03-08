@@ -60,7 +60,7 @@ function ProductPage() {
     <section className={styles.content}>
       <ProductInfo product={product} />
       <ProductReview reviews={reviews} />
-        <ProductList title="You might also like" viewAll={false}/>
+        <ProductList title="You might also like" viewAll={false} max={4}/>
     </section>
   );
 }
