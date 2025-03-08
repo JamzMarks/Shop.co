@@ -14,11 +14,11 @@ function Home(){
             <div className={`${global.container} ${styles.content}`}>
                 <ProductList
                     title="New Arrivals"
-                    max={8}
+                    viewAll={true}
                 />
                 <ProductList
                     title="Top selling"
-                    max={8}
+                    viewAll={true}
                 />
                 <Category></Category>
                 <div className={styles.reviewsSection}>

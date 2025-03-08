@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
 import styles from './productList.module.scss';
 import {Product} from '../../../types/product.interface';
-import { fetchData } from '../../../services/dataService';
+import { getProduct } from '../../../services/dataService';
 import ProductCard from '../../ui/productCard/productCard.component';
 import Button from '../../common/button/button.component';
 
 interface ProductListProps {
     title: string;
-    max: number;
+    viewAll: boolean;
   }
 
-function ProductList({title}: ProductListProps){
+function ProductList({title, viewAll}: ProductListProps){
     const [prodcuts, setProducts] = useState<Product[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const getProducts = async () => {
           try {
-            const data = await fetchData();
-            setProducts(data as Product[]);
+            const data = await getProduct();
+            setProducts(data);
           } catch (error) {
-            console.log(error)
             setError('Erro ao carregar os produtos');
           }
         };
     
         getProducts();
       }, []);
+
       if (error) {
         return <p>{error}</p>;
       }
@@ -41,11 +41,14 @@ function ProductList({title}: ProductListProps){
                     />
                 ))}
             </div>
-            <Button
-                type="button"
-                text='View All'
-                btnStyle='white'
-            />
+            {viewAll && 
+              <Button
+                  type="button"
+                  text='View All'
+                  btnStyle='white'
+              />
+            }
+            
         </section>
     )
 }
