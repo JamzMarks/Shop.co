@@ -4,12 +4,18 @@ import { DataSource, Equal } from 'typeorm';
 import { Product } from "./entities/product";
 import { Review } from "./entities/review";
 import { upload } from './multer';
+import cors from 'cors';
+import { Dress } from './entities/types/dress-type';
+import { compareDress } from './utils/compareParams';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 const uploadMiddleware = upload.array('images', 3);
+
+
 
 const dataSource = new DataSource({
     type: "sqlite",   
@@ -45,6 +51,28 @@ app.get('/product/:id', async (req: Request, res: Response) => {
             return;
         }
             res.status(200).json(product);
+
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao buscar produtos." });
+    }
+})
+app.get('/products/dress/:dress', async (req: Request, res: Response) => {
+    const { dress } = req.params;
+    const keyDress = compareDress(dress);
+    
+    try {
+        if (!keyDress) {
+            res.status(400).json({ message: "Parâmetro 'dress' inválido." });
+            return ;
+        }
+        const products = await dataSource.getRepository(Product).find({
+            where: { dress: Equal(Dress[keyDress]) },
+        });
+        if (!products) {
+            res.status(404).json({ message: "Produto não encontrado." });
+            return;
+        }
+            res.status(200).json(products);
 
     } catch (error) {
         res.status(500).json({ message: "Erro ao buscar produtos." });
@@ -99,7 +127,7 @@ app.get('/review/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: "Erro ao buscar review." });
     }
 })
-app.get('/review/product/:item', async (req: Request, res: Response) => {
+app.get('/review/product/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const reviews = await dataSource.getRepository(Review).find({where: { productId: Equal(parseInt(id)) },

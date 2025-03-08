@@ -1,6 +1,11 @@
 export enum Size {
-    Small = 'Small',
-    Medium = 'Medium',
-    Large = 'Large',
-    XLarge = 'X-Large'
+    X2S = 'XX-Small',
+    XS = 'X-Small',
+    S = 'Small',
+    M = 'Medium',
+    L = 'Large',
+    XL = 'X-Large',
+    X2L = 'XX-Large',
+    X3L = '3X-Large',
+    X4L = '4X-Large'
 }

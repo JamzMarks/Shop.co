@@ -123,9 +123,9 @@
                         transition: 0.1s ease;
                     }
                     label:hover,
-                    input[type="radio"]:checked + label {
+                    input:checked + .item label{
                         background-color: black;
-                        color: white;
+                        color: white; 
                       }                  
                     input{
                         display: none;
@@ -157,7 +157,7 @@
                     }
                   
                     input:checked + .circle {
-                    //   border: 2px solid black;   
+   
                       transform: scale(1.1); 
                     }
                   }

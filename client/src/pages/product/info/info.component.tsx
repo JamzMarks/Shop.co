@@ -1,54 +1,52 @@
 import { useState } from "react";
 import Button from "../../../components/common/button/button.component";
-// import { Product } from "../../../types/product.interface";
 import styles from "./info.module.scss";
 import ImageShow from "./imageShow/imageShow.component";
 import StarRating from "../../../components/common/rate/starRating";
 import IncreaseButton from "../../../components/common/increaseButton/increaseButton.component";
-// interface ProductItem {
-//   product?: Product;
-// }
-// function ProductInfo({ product }: ProductItem) {
-const colorsRadio = ["#ff0000", "#00ff00", "#0000ff"]; // Vermelho, Verde, Azul
-function ProductInfo() {
-  const [selectedColor, setSelectedColor] = useState<string>(colorsRadio[0]);
-  // const [selectedSize, setselectedSize] = useState<string>(sizes[0]);
-  const images: string[] = [
-    "/assets/images/products/jeans2.png",
-    "/assets/images/products/shirt1.png",
-    "/assets/images/products/jeans3.png",
-  ];
+import { Product } from "../../../types/product.interface";
+import { getDiscountPrice } from '../../../utils/getDiscountPrice';
+import { Size } from "../../../types/size-type";
+
+interface ProductItem {
+  product: Product;
+}
+function ProductInfo({ product }: ProductItem) {
+  const [selectedColor, setSelectedColor] = useState<string>(product.color[0]);
+  const [selectedSize, setSelectedSize] = useState<string>();
+
   return (
     <section className={styles.product}>
       <ImageShow
-        images={images}
+        images={product.image}
       />
       <div className={styles.info}>
         <div className={styles.details}>
           <div className={styles.upper}>
-            <h3 className={styles.title}>Um titulo</h3>
+            <h3 className={styles.title}>{product.title}</h3>
             <StarRating
-              rate={3}
+              rate={product.rating}
               showRate={true}
             />
             <div className={styles.priceWrapper}>
-              <p className={styles.price}>$123</p>
-              <p className={styles.discount}>$123</p>
-              <div className={styles.percentage}>
-                <span>12%</span>
-              </div>
-              {/* {product.discount !== 0 && (
-                                <>
-                                
-                                </> 
-                            )} */}
+              <p className={styles.price}>${getDiscountPrice(
+                product.price, product.discount ? product.discount : 0 
+                )}
+              </p>
+              {product.discount !== 0 && (
+                <>
+                <p className={styles.discount}>${product.price}</p>
+                <div className={styles.percentage}>
+                  <span>{product.discount}%</span>
+                </div>
+                </> 
+              )}
             </div>
           </div>
 
           <div className={styles.description}>
             <p>
-              Lorem ipsum alasdasd asda asdad ad ad as dasdasdada asdada
-              asdasdasdad asdasd asd
+              {product.description}
             </p>
           </div>
         </div>
@@ -56,7 +54,7 @@ function ProductInfo() {
           <div className={styles.colorWrapper}>
             <p className={styles.funcTitle}>Select Colors</p>
             <div className={styles.colors}>
-              {colorsRadio.map((color, index) => (
+              {product.color.map((color, index) => (
                 <label key={index} className={styles.colorOption}>
                   <input
                     type="radio"
@@ -76,22 +74,25 @@ function ProductInfo() {
           <div className={styles.sizeWrapper}>
             <p className={styles.funcTitle}>Choose Size</p>
             <div className={styles.sizes}>
-              <div className={styles.item}>
-                <label htmlFor="small">Small</label>
-                <input id="small" name="size" type="radio" value="small" />
-              </div>
-              <div className={styles.item}>
-                <label htmlFor="medium">Medium</label>
-                <input id="medium" name="size" type="radio" value="medium" />
-              </div>
-              <div className={styles.item}>
-                <label htmlFor="large">Large</label>
-                <input id="large" name="size" type="radio" value="large" />
-              </div>
-              <div className={styles.item}>
-                <label htmlFor="xlarge">X-Large</label>
-                <input id="xlarge" name="size" type="radio" value="xlarge" />
-              </div>
+            {product.size
+              .map((item, index) => {
+                // @ts-ignore
+                let labelSize = Size[item as keyof typeof Size];
+                return (
+                  <div className={styles.item} key={index}  >
+                    <label htmlFor={item}>
+                      {labelSize}
+                      <input id={item} 
+                        name="size" 
+                        type="radio" 
+                        value={item} 
+                        checked={selectedSize === item} 
+                        onChange={() => setSelectedColor(item)}
+                      />
+                    </label>
+                  
+                </div>      
+            )})}
             </div>
           </div>
           <div className={styles.buttons}>
