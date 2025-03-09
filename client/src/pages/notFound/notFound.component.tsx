@@ -1,4 +1,5 @@
 import globals from '../../assets/styles/globalStyles.module.css';
+
 function NotFound(){
     return(
         <div className={globals.container}>

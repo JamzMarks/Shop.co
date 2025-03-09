@@ -13,7 +13,7 @@ interface ProductItem {
 }
 function ProductInfo({ product }: ProductItem) {
   const [selectedColor, setSelectedColor] = useState<string>(product.color[0]);
-  const [selectedSize, setSelectedSize] = useState<string>();
+  const [selectedSize, setSelectedSize] = useState<keyof typeof Size | null>(null);
 
   return (
     <section className={styles.product}>
@@ -74,23 +74,20 @@ function ProductInfo({ product }: ProductItem) {
           <div className={styles.sizeWrapper}>
             <p className={styles.funcTitle}>Choose Size</p>
             <div className={styles.sizes}>
-            {product.size
-              .map((item, index) => {
-                // @ts-ignore
-                let labelSize = Size[item as keyof typeof Size];
+            {product.size.map((item, index) => {
+                const key = item as unknown as keyof typeof Size;
+                const labelSize = Size[key];
+                const isSelected = selectedSize === key;
                 return (
-                  <div className={styles.item} key={index}  >
-                    <label htmlFor={item}>
+                <div 
+                  key={index}  
+                  className={styles.item} 
+                  >
+                  <label 
+                    className={`${isSelected ? styles.checked : ""}`}
+                    onClick={() => setSelectedSize(key)}>
                       {labelSize}
-                      <input id={item} 
-                        name="size" 
-                        type="radio" 
-                        value={item} 
-                        checked={selectedSize === item} 
-                        onChange={() => setSelectedColor(item)}
-                      />
-                    </label>
-                  
+                  </label> 
                 </div>      
             )})}
             </div>

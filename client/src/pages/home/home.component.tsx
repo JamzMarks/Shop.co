@@ -12,16 +12,19 @@ function Home(){
             <Thumb></Thumb>
             <Brands></Brands>
             <div className={`${global.container} ${styles.content}`}>
-                <ProductList
-                    title="New Arrivals"
-                    viewAll={true}
-                    max={4}
-                />
-                <ProductList
-                    title="Top selling"
-                    viewAll={true}
-                    max={4}
-                />
+                <div>
+                    <ProductList
+                        title="New Arrivals"
+                        viewAll={true}
+                        max={4}
+                    />
+                    <ProductList
+                        title="Top selling"
+                        viewAll={true}
+                        max={4}
+                    />
+                </div>
+                
                 <Category></Category>
                 <div className={styles.reviewsSection}>
                     <div className={styles.reviewTitle}>

@@ -1,0 +1,83 @@
+.productReview{
+    display: grid;
+    gap: 20px;
+    .nav{
+        width: 100%;
+        .list{
+            width: 100%;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            .item{
+                cursor: pointer;
+                display: block;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #0000001A;
+                transition: border-color 0.3s ease-in-out;
+                color: #00000099;
+                font-size: 16px;
+                
+             }
+             .checked {
+                border-bottom: 2px solid black;
+                color: black;
+                font-weight: 500;
+              }
+        }
+    }
+    .moreInfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.hud{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span{
+        color: #00000099;
+        font-weight: 400;
+    }
+    .button{
+        display: flex;
+        gap: 8px;
+    }
+}
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    .reviewList{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .loadMoreBtn{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .content{
+        .reviewList{
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+}
+@media (min-width: 1028px) {
+    .content{
+        .reviewList{
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
