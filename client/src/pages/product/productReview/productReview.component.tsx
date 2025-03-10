@@ -56,7 +56,7 @@ function ProductReview({reviews}: productReviewProps){
                 <section className={styles.content}>
                     <div className={styles.reviewList}>
                         {reviews.map((element, index) => (
-                            <ReviewCard key={index}></ReviewCard>
+                            <ReviewCard key={index} review={element} withDate={true}></ReviewCard>
                         ))}
                     </div>
                     <div className={styles.loadMoreBtn}>
