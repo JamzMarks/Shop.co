@@ -1,7 +1,7 @@
 import styles from './productCard.module.scss';
 import { Product } from '../../../types/product.interface';
 import StarRating from '../../common/rate/starRating';
-import { getImagePath, getRandomImage } from '../../../utils/getImage';
+import { getImagePath } from '../../../utils/getImage';
 import { Link } from 'react-router-dom';
 import { getDiscountPrice } from '../../../utils/getDiscountPrice';
 interface ProductCardProps {
@@ -12,7 +12,7 @@ function ProductCard({product}: ProductCardProps){
     return(
         <article className={styles.productCard}>
             <div className={styles.image}>
-                <img src={getImagePath(product.image[getRandomImage(3)])} alt={product.title} />
+                <img src={getImagePath(product.image[1])} alt={product.title} />
             </div>
             <div className={styles.details}>
                 <h3 className={styles.title}><Link to={`/product/${product.id}`}>{product.title.toLowerCase()}</Link></h3>

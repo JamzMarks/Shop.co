@@ -4,42 +4,34 @@ import globals from '../../assets/styles/globalStyles.module.css';
 import styles from './cart.module.scss';
 import Input from "../../components/common/input/input.component";
 import Button from "../../components/common/button/button.component";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { getFromLocalStorage } from "../../services/localStorage";
+import { ProductCart } from "../../types/product.interface";
 
 function Cart(){
-
-    const product = {
-        id: 2,
-        title: "SKINNY FIT JEANS",
-        price: 240,
-        image: "assets/images/products/shirt1.png",
-        discount: 20,
-        color: "#af3g4a",
-        size: Size.Small
-    }
+    const [retrievedData, setRetrievedData] = useState<ProductCart[] | []>([]);
+    
+    useEffect(() => {
+        const storedValue = getFromLocalStorage();
+        if (storedValue) {
+            setRetrievedData(storedValue);
+            
+        }
+    }, []);
     const [promo, setPromo] = useState('')
+
     return(
         <section>
             <div className={`${globals.container} ${styles.container}`}>
                 <h1 className={styles.pageTitle}>Your Cart</h1>
                 <div className={styles.content}>
                     <div className={styles.items}>
-                        <ProductCartItem
-                        product={product}
-                        />
-                        <ProductCartItem
-                        product={product}
-                        />
-                        <ProductCartItem
-                        product={product}
-                        />
-                        <ProductCartItem
-                        product={product}
-                        />
-                        <ProductCartItem
-                        product={product}
-                        />
+                        {retrievedData.map((element, index) => (
+                            <ProductCartItem
+                            key={index}
+                            productBuy={element}
+                            />
+                        ))}
                     </div>
                     <div className={styles.buyInfo}>
                         <h2 className={styles.title}>Order Summary</h2>

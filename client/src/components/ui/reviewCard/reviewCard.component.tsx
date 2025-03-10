@@ -8,8 +8,6 @@ interface ReviewProps {
 }
 
 function ReviewCard({review, withDate}: ReviewProps){
-    console.log(review.date)
-    console.log(typeof review.date)
     return(
         <article className={styles.reviewCard}>
             <StarRating
@@ -22,7 +20,7 @@ function ReviewCard({review, withDate}: ReviewProps){
             </div>
             <p className={styles.review}>{review.review}</p>
 
-            {/* {withDate && <p className={styles.date}>Posted on <span>{dateToText(review.date)}</span></p>} */}
+            {withDate && <p className={styles.date}>Posted on <span>{dateToText(review.date.toString())}</span></p>}
 
         </article>
     )

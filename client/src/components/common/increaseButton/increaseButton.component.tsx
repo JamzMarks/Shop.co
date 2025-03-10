@@ -1,8 +1,9 @@
-import { useState } from "react";
 import styles from './increaseButton.module.scss';
-
-function IncreaseButton(){
-    const [count, setCount] = useState(1)
+interface IncreaseButtonProps {
+    count: number;
+    setCount: React.Dispatch<React.SetStateAction<number>>;
+}
+function IncreaseButton({ count, setCount }: IncreaseButtonProps){
     return(
         <div className={styles.qtdBtn}>
             <button

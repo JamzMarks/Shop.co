@@ -1,22 +1,21 @@
 import ProductInfo from "./info/info.component";
 import styles from "./product.module.scss";
-
 import {
   getProductById,
-  getProductsByDress,
-  getReviewByProductId,
+  getProductsByDress
 } from "../../services/dataService";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/product.interface";
 import { useNavigate, useParams } from "react-router-dom";
-import { Review } from "../../types/review.interface";
 import ProductReview from "./productReview/productReview.component";
 import ProductList from "../../components/layout/productList/productList.component";
+import { useReviews } from "../../hooks/useReview";
 
 function ProductPage() {
-    const { id } = useParams();
+  const { id } = useParams();
+  const productId = Number(id);  
   const [product, setProducts] = useState<Product>();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const { reviews } = useReviews(productId);
   const [related, setRelated] = useState<Product[]>([]);
   const navigate = useNavigate();
 
@@ -28,7 +27,6 @@ function ProductPage() {
             navigate("/404");
             return;
           }
-          const productId = Number(id); 
           if (isNaN(productId)) {
             navigate("/404"); 
             return;
@@ -38,10 +36,8 @@ function ProductPage() {
         if (!fetchedData) {
           navigate("/404");
         }
-        const fetchReviewData = await getReviewByProductId(productId);
         const fetchRelatedData = await getProductsByDress("Casual");
         setRelated(fetchRelatedData);
-        setReviews(fetchReviewData);
         setProducts(fetchedData);
       } catch (error) {
         console.error(error);
@@ -59,7 +55,7 @@ function ProductPage() {
   return (
     <section className={styles.content}>
       <ProductInfo product={product} />
-      <ProductReview reviews={reviews} />
+      <ProductReview reviews={reviews}/>
         <ProductList title="You might also like" viewAll={false} max={4}/>
     </section>
   );

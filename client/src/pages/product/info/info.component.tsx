@@ -4,17 +4,27 @@ import styles from "./info.module.scss";
 import ImageShow from "./imageShow/imageShow.component";
 import StarRating from "../../../components/common/rate/starRating";
 import IncreaseButton from "../../../components/common/increaseButton/increaseButton.component";
-import { Product } from "../../../types/product.interface";
+import { Product, ProductCart } from "../../../types/product.interface";
 import { getDiscountPrice } from '../../../utils/getDiscountPrice';
 import { Size } from "../../../types/size-type";
+import { saveToLocalStorage } from "../../../services/localStorage";
 
 interface ProductItem {
   product: Product;
 }
 function ProductInfo({ product }: ProductItem) {
+  const [count, setCount] = useState(1);
   const [selectedColor, setSelectedColor] = useState<string>(product.color[0]);
-  const [selectedSize, setSelectedSize] = useState<keyof typeof Size | null>(null);
+  const [selectedSize, setSelectedSize] = useState<keyof typeof Size>(
+    product.size.length > 0 ? (product.size[0] as unknown as keyof typeof Size) : Object.keys(Size)[0] as keyof typeof Size
+  );
 
+  const productCart: ProductCart = {
+    productId: product.id,  
+    count: count,           
+    color: selectedColor,  
+    size: selectedSize as keyof Size   
+  }
   return (
     <section className={styles.product}>
       <ImageShow
@@ -93,9 +103,10 @@ function ProductInfo({ product }: ProductItem) {
             </div>
           </div>
           <div className={styles.buttons}>
-            <IncreaseButton/>
-            
-            <Button type="submit" text="Add to Cart" btnStyle="black" />
+            <IncreaseButton count={count} setCount={setCount}/>
+            <Button type="submit" text="Add to Cart" btnStyle="black" 
+            onClick={() => saveToLocalStorage(productCart)}
+            />
           </div>
         </div>
       </div>

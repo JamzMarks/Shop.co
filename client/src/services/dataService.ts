@@ -42,10 +42,25 @@ export async function getReviewByProductId(id: number): Promise<Review[]>{
     const response = await axios.get(`${API_URL}/review/product/${id}`)
     return response.data;
   } catch (error) {
-    console.error('Erro ao buscar tamanhos:', error);
+    console.error('Erro ao buscar reviews:', error);
     throw error;
   }
 }
+// export async function getReviewByProductId(productId: number, limit: number = 3, cursor?: number | null, ): Promise<Review[]> {
+//   try {
+//     const params = new URLSearchParams();
+//     params.append("productId", productId.toString());
+//     params.append("limit", limit.toString());
+//     if (cursor) params.append("cursor", cursor.toString());
+
+//     const response = await axios.get(`${API_URL}/review/product/${productId}?${params.toString()}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Erro ao buscar reviews:", error);
+//     throw error;
+//   }
+// }
+
 export async function getReviewById(id: number): Promise<Review>{
   try {
     const response = await axios.get(`${API_URL}/review/${id}`)

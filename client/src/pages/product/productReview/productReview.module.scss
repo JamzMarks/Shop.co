@@ -31,6 +31,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 20px;
     }
 }
 
@@ -67,6 +68,11 @@
 }
 
 @media (min-width: 768px) {
+    .productReview{
+        .moreInfo{
+            gap: 24px;
+        }
+    }
     .content{
         .reviewList{
             grid-template-columns: repeat(2, 1fr);

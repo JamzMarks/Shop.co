@@ -1,22 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../../components/common/button/button.component';
 import { Review } from '../../../types/review.interface';
 import styles from './productReview.module.scss';
 import ReviewCard from '../../../components/ui/reviewCard/reviewCard.component';
 
 interface productReviewProps{
-    reviews: Review[]
+    reviews: Review[],
 }
 const tabs = [
     { id: "PD", label: "Product Details" },
     { id: "RR", label: "Rating & Reviews" },
     { id: "FAQ", label: "FAQs" }
   ];
-
+const PAGE_SIZE = 3;
 function ProductReview({reviews}: productReviewProps){
 
     const [activeTab, setActiveTab] = useState("RR");
+    const [loadedReviews, setLoadedReviews] = useState<Review[]>([]);
+    const [hasMore, setHasMore] = useState(true); 
 
+    function loadMoreReviews(){
+        if (loadedReviews.length >= reviews.length) return;
+    
+        const nextReviews = reviews.slice(loadedReviews.length, loadedReviews.length + PAGE_SIZE);
+        setLoadedReviews((prev) => [...prev, ...nextReviews]);
+    
+        if (loadedReviews.length + PAGE_SIZE >= reviews.length) {
+          setHasMore(false);
+        }
+      };
+    useEffect(() => {
+    setLoadedReviews(reviews.slice(0, PAGE_SIZE));
+    }, [reviews]);
     return(
         <section className={styles.productReview}>
             <nav className={styles.nav}>
@@ -55,13 +70,19 @@ function ProductReview({reviews}: productReviewProps){
                 </div>
                 <section className={styles.content}>
                     <div className={styles.reviewList}>
-                        {reviews.map((element, index) => (
+                        {loadedReviews.map((element, index) => (
                             <ReviewCard key={index} review={element} withDate={true}></ReviewCard>
                         ))}
                     </div>
                     <div className={styles.loadMoreBtn}>
-                        <Button text='Load More reviews' type='button' btnStyle='white'></Button>
 
+                        <Button 
+                        text={hasMore ? "Load more reviews" : "No more reviews"}
+                        type='button' 
+                        btnStyle='white'
+                        onClick={loadMoreReviews} 
+                        >
+                        </Button>
                     </div>
                 </section>
             </div>

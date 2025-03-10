@@ -2,40 +2,33 @@ import { useState, useEffect } from "react";
 import { Review } from "../types/review.interface";
 import { getReviewByProductId } from "../services/dataService";
 
-const PAGE_SIZE = 6;
-
 export function useReviews(productId: number) {
   const [reviews, setReviews] = useState<Review[]>([]);
-  const [cursor, setCursor] = useState<number | null>(null);
-  const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchReviews = async () => {
-    if (loading || !hasMore) return;
     setLoading(true);
+    setError(null);
 
     try {
-      const response = await getReviewByProductId(productId, cursor, PAGE_SIZE);
+      const response = await getReviewByProductId(productId);
 
       if (response.length > 0) {
-        setReviews((prev) => [...prev, ...response]);
-        setCursor(response[response.length - 1].id);
+        setReviews(response);
       } else {
-        setHasMore(false);
+        setReviews([]); 
       }
     } catch (error) {
-      console.error("Erro ao buscar reviews:", error);
+      setError("Erro ao buscar reviews");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    setReviews([]);
-    setCursor(null);
-    setHasMore(true);
     fetchReviews();
   }, [productId]);
 
-  return { reviews, fetchReviews, hasMore, loading };
+  return { reviews, loading, error };
 }

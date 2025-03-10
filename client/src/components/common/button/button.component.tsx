@@ -4,16 +4,18 @@ interface Button{
     type: "submit" | "reset" | "button" | undefined,
     text: string,
     btnStyle: "white" | "black" | "white2" | "black2",
-    onClick?: () => void;
+    onClick?: any;
+    disable?: boolean
 
 }
 
-function Button({type, text, btnStyle, onClick}: Button){
+function Button({type, text, btnStyle, onClick, disable}: Button){
     return(
         <button
         type={type}
         className={`${styles.btn} ${styles[btnStyle]}`} 
         onClick={onClick}
+        disabled={disable}
         >
             {text}
         </button>
