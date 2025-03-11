@@ -31,7 +31,7 @@ function Cart(){
         console.log(retrievedData)
       };
     return(
-        <section>
+        <section className={styles.cart}>
             <div className={`${globals.container} ${styles.container}`}>
                 <h1 className={styles.pageTitle}>Your Cart</h1>
                 <div className={styles.content}>

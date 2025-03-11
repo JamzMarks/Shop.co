@@ -9,9 +9,13 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     min-height: 64px;
+    
+  }
+  .borderForHome{
+    border-bottom: 1px solid #0000001A;
   }
   
-  .logo-container {
+  .logoContainer {
     display: flex;
     align-items: center;
     height: 100%;
@@ -32,6 +36,9 @@
     }  
   }
   @media (min-width: 1024px) {
+    .logoContainer {
+      gap: 0;
+    }
     .searchMobile {
       display: none;
     }

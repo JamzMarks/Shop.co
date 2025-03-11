@@ -62,42 +62,34 @@
             
         }
         .colorWrapper{
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 16px;
-            input[type="checkbox"] {
-                appearance: none;
-                max-width: 37px;
-                max-height: 37px;
-                border: 1px solid #00000033;
-                border-radius: 50%;
-                display: inline-block;
+            .colorItem {
                 position: relative;
-                cursor: pointer;
-                transition: all 0.3s ease;
               }
               
-              input[type="checkbox"]:checked {
-                background-color: #4CAF50;
-                border-color: #4CAF50;
+              .hiddenCheckbox {
+                display: none;
               }
-              
-              input[type="checkbox"]::before {
-                content: "";
-                width: 10px;
-                height: 10px;
-                background-color: white;
+            .colorLabel {
+                width: 37px;
+                height: 37px;
                 border-radius: 50%;
+                border: 1px solid #00000033;
+                cursor: pointer;
+                display: inline-block;
+              }
+              .hiddenCheckbox:checked + .colorLabel::after {
+                content: "✔";
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                transition: all 0.2s ease-in-out;
-              }
-              
-              input[type="checkbox"]:checked::before {
-                transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%);
+                text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
               }
         }
         .sizeWrapper{

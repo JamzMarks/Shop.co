@@ -8,16 +8,14 @@ import Category from "../pages/category/category.component";
 
 function AppRoutes(){
   return (
-    <Router>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart/>} />
-            <Route path="/404" element={<NotFound/>} />
-            <Route path="/category" element={<Category/>} />
-            <Route path="*" element={<Home />} />
-        </Routes>
-    </Router>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/404" element={<NotFound/>} />
+          <Route path="/category" element={<Category/>} />
+          <Route path="*" element={<Home />} />
+      </Routes>
   )
 };
 export default AppRoutes;

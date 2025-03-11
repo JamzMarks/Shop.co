@@ -47,8 +47,12 @@ function Filter(){
                 <div>
                     <h4 className={styles.title}>Colors<span></span></h4>
                     <div className={styles.colorWrapper}>
-                        {colors.map((element, index) => (
-                            <input key={index} type='checkbox' id={element} name="color"></input>
+                        {colors.map((color, index) => (
+                            <div key={index} className={styles.colorItem}>
+                                <input type="checkbox" id={color} name="color" value={color} className={styles.hiddenCheckbox} />
+                                <label htmlFor={color} style={{ backgroundColor: color }} className={styles.colorLabel}></label>
+                            </div>
+                            // <input key={index} type='checkbox' id={element} name="color"></input>
                         ))}
                     </div>
                     

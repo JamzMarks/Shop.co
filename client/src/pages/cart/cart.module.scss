@@ -4,15 +4,24 @@
     margin-bottom: 20px;
 }
 
-
+.cart{
+    margin: 20px auto 36px auto;
+}
+@media (min-width: 768px) {
+    .cart{
+        margin: 36px auto 78px auto;
+    }
+}
 .content{
     display: grid;
     gap: 20px;
+    
     .items,
     .buyInfo{
         border-radius: 20px;
         border: 1px solid #0000001A;
         padding: 14px;
+        max-height: fit-content;
     }
     .items > * {
         padding: 16px 0;
