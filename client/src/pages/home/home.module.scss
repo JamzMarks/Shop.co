@@ -1,6 +1,7 @@
 .content{
     display: grid;
-    gap: 80px;
+    gap: 50px;
+    margin: 50px auto;
 }  
   .reviewList {
     scroll-behavior: smooth;
@@ -79,6 +80,11 @@
   }
   
 @media (min-width: 1024px) {
+  .content{
+    display: grid;
+    gap: 80px;
+    margin: 50px auto;
+} 
     .reviewList {
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;

@@ -17,11 +17,8 @@ export interface Product{
 }
 
 export interface ProductCart{
-    id: number,
-    title: string
-    price: number,
-    image: string,
-    discount: number,
+    productId: number,
+    count: number,
     color: string,
-    size: Size
+    size: keyof Size
 }

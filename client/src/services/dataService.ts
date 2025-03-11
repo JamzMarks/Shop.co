@@ -1,23 +1,10 @@
 // src/services/dataService.ts
 import axios from 'axios';
-import productsData from '../data/products.json';
 import { Review } from '../types/review.interface';
 import { Product } from '../types/product.interface';
 
 export const API_URL = 'http://localhost:3000';
 
-export const fetchData = async () => {
-  try {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(productsData);
-      }, 1000);
-    });
-  } catch (error) {
-    console.error('Erro ao buscar os dados', error);
-    throw error;
-  }
-};
 
 export async function getProduct(): Promise<Product[]>{
   try {
@@ -42,10 +29,11 @@ export async function getReviewByProductId(id: number): Promise<Review[]>{
     const response = await axios.get(`${API_URL}/review/product/${id}`)
     return response.data;
   } catch (error) {
-    console.error('Erro ao buscar tamanhos:', error);
+    console.error('Erro ao buscar reviews:', error);
     throw error;
   }
 }
+
 export async function getReviewById(id: number): Promise<Review>{
   try {
     const response = await axios.get(`${API_URL}/review/${id}`)

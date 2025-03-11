@@ -5,23 +5,32 @@ import global from '../../assets/styles/globalStyles.module.css';
 import styles from './home.module.scss';
 import ProductList from '../../components/layout/productList/productList.component';
 import ReviewCard from "../../components/ui/reviewCard/reviewCard.component";
+import { useEffect, useState } from "react";
+import { Review } from "../../types/review.interface";
 
 function Home(){
+    // const [reviews, setReviews] = useState<Review[]>
+    useEffect(() => {
+
+    })
     return(
         <>
             <Thumb></Thumb>
             <Brands></Brands>
             <div className={`${global.container} ${styles.content}`}>
-                <ProductList
-                    title="New Arrivals"
-                    viewAll={true}
-                    max={4}
-                />
-                <ProductList
-                    title="Top selling"
-                    viewAll={true}
-                    max={4}
-                />
+                <div>
+                    <ProductList
+                        title="New Arrivals"
+                        viewAll={true}
+                        max={4}
+                    />
+                    <ProductList
+                        title="Top selling"
+                        viewAll={true}
+                        max={4}
+                    />
+                </div>
+                
                 <Category></Category>
                 <div className={styles.reviewsSection}>
                     <div className={styles.reviewTitle}>
@@ -36,12 +45,8 @@ function Home(){
                         </div> 
                     </div>
                     <div className={styles.reviewList}>
-                        <ReviewCard></ReviewCard>
-                        <ReviewCard></ReviewCard>
-                        <ReviewCard></ReviewCard>
-                        <ReviewCard></ReviewCard>
-                        <ReviewCard></ReviewCard>
-                        <ReviewCard></ReviewCard>
+                        {}
+                        {/* <ReviewCard review={}></ReviewCard> */}
                     </div>
                 </div>
             </div>

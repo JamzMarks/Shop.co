@@ -2,5 +2,6 @@ export interface Review{
     id: number,
     user: string
     review: string,
-    rating: number
+    rating: number,
+    date: Date
 }
