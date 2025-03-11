@@ -29,15 +29,15 @@ export function getFromLocalStorage(): ProductCart[] {
     }
 }
 
-// export function removeFromLocalStorage(productId: number) {
-//     try {
-//         const existingProducts = getFromLocalStorage();
-//         const filteredProducts = existingProducts.filter(p => p.product !== productId);
-//         localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredProducts));
-//     } catch (error) {
-//         console.error("Erro ao remover item do localStorage:", error);
-//     }
-// }
+export function removeItemFromLocalStorage(productId: number) {
+    try {
+        const existingProducts = getFromLocalStorage();
+        const filteredProducts = existingProducts.filter(p => p.productId !== productId);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredProducts));
+    } catch (error) {
+        console.error("Erro ao remover item do localStorage:", error);
+    }
+}
 
 export function clearLocalStorage(){
     try {
