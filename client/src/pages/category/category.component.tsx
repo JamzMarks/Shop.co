@@ -10,9 +10,12 @@ import SortBy from '../../components/common/sortBy/sortBy.component';
 
 function Category(){
     const [products, setProducts] = useState<Product[]>([]);
-    const [showFilter, setShowFilter] = useState<boolean>(false);
+    const [showFilter, setShowFilter] = useState<boolean>(window.innerWidth > 1028);
     const params = useParams();
     useEffect(() => {
+        const handleResize = () => {
+            setShowFilter(window.innerWidth > 1028);
+        };
         const fetchData = async () => {
             try {
                 const data = await getProduct();
@@ -22,7 +25,8 @@ function Category(){
             }
         }
         fetchData();
-        console.log(products)
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     function toggleFilters(){
@@ -35,28 +39,20 @@ function Category(){
             {showFilter && <Filter toggleFilters={toggleFilters}/>}
                 <div className={styles.productSection}>
                     <div className={styles.title}>
-                        <h1>Casual</h1>
+                        <h1>Category</h1>
                         <div className={styles.pageInfo}>
                             <p>Showing 1-10 of <span>{products.length} Products</span></p>
                             <div className={styles.sortBy}>
-                                <p>Sort by:</p>
                                 <SortBy></SortBy>
                             </div>
-                            <button onClick={toggleFilters}>
+                            <button type="button" onClick={toggleFilters}>
                                 <img src="assets\images\icons\filter.svg" alt="filter" />
                             </button>
                         </div>
                     </div>
-                <CategoryList
-                products={products}
-                ></CategoryList>
-                    <div className={styles.pagination}>
-                        <button>Previous</button>
-                        <div>
-                            1
-                        </div>
-                        <button>Next</button>
-                    </div>
+                    <CategoryList
+                    products={products}
+                    />
                 </div>
             </div>
         </section>

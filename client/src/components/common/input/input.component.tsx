@@ -8,12 +8,14 @@ interface InputProps {
     value: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     inputIcon?: "search" | "email" | "promo";
+    ariaLabel: string;
   }
   
 
-function Input({ placeholder, type, required, inputStyle, inputIcon, value, onChange }: InputProps) {
+function Input({ placeholder, type, required, inputStyle, inputIcon, value, onChange, ariaLabel }: InputProps) {
     return(
         <input 
+            aria-label={ariaLabel}
             placeholder={placeholder} 
             type={type}
             value={value}

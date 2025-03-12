@@ -11,9 +11,9 @@ function AppRoutes(){
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/category" element={<Category/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/404" element={<NotFound/>} />
-          <Route path="/category" element={<Category/>} />
           <Route path="*" element={<Home />} />
       </Routes>
   )

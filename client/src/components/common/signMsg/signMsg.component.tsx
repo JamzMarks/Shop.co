@@ -18,7 +18,7 @@ function SignMsg(){
                 type="button" 
                 onClick={removeMessage}
                 className={styles.close}>
-                        <img src="assets\images\icons\menu\close.svg"/>
+                        <img src="assets\images\icons\menu\close.svg" alt='close'/>
                 </button>
             </div>
         </section>

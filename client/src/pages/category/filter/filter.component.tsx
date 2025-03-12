@@ -25,7 +25,7 @@ function Filter({toggleFilters}: FilterProps){
                 <div className={styles.title}>
                     <h2>Filters</h2>
                     <button onClick={toggleFilters}>
-                        <img src="assets\images\icons\close.svg" alt="close" />
+                        <img src="assets\images\icons\close.svg" alt="close button" />
                     </button>
                 </div>
                 <div>

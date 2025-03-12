@@ -2,7 +2,7 @@ import styles from './productCard.module.scss';
 import { Product } from '../../../types/product.interface';
 import StarRating from '../../common/rate/starRating';
 import { getImagePath } from '../../../utils/getImage';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getDiscountPrice } from '../../../utils/getDiscountPrice';
 interface ProductCardProps {
     product: Product;

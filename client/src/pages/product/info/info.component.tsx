@@ -8,6 +8,7 @@ import { Product, ProductCart } from "../../../types/product.interface";
 import { getDiscountPrice } from '../../../utils/getDiscountPrice';
 import { Size } from "../../../types/size-type";
 import { saveToLocalStorage } from "../../../services/localStorage";
+import { useNavigate } from "react-router-dom";
 
 interface ProductItem {
   product: Product;
@@ -25,6 +26,7 @@ function ProductInfo({ product }: ProductItem) {
     color: selectedColor,  
     size: selectedSize as keyof Size   
   }
+  const navigate = useNavigate();
   return (
     <section className={styles.product}>
       <ImageShow
@@ -105,7 +107,10 @@ function ProductInfo({ product }: ProductItem) {
           <div className={styles.buttons}>
             <IncreaseButton count={count} setCount={setCount}/>
             <Button type="submit" text="Add to Cart" btnStyle="black" 
-            onClick={() => saveToLocalStorage(productCart)}
+            onClick={() => {
+              saveToLocalStorage(productCart);
+              navigate('/cart');
+            }}
             />
           </div>
         </div>
