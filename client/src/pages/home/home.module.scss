@@ -2,6 +2,14 @@
     display: grid;
     gap: 50px;
     margin: 50px auto;
+    .productLists{
+      display: grid;
+      gap:40px ;
+    }
+    .productLists > :first-child{
+      border-bottom: 1px solid #0000001A;
+      padding-bottom: 40px;
+    }
 }  
   .reviewList {
     scroll-behavior: smooth;

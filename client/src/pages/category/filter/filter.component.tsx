@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Button from '../../../components/common/button/button.component';
 import { Size } from '../../../types/size-type';
 import styles from './filter.module.scss';
+import { Dress } from '../../../types/dress-type';
+import { Category } from '../../../types/category-type';
 
 const colors = ['green', 'red', 'blue', 'orange', 'lightblue', 'yellow', 'purple', 'pink' ,'white', 'black']
 const dress = ['Casual', 'Formal', 'Party', 'Gym']
@@ -12,11 +14,38 @@ interface FilterProps {
 
 function Filter({toggleFilters}: FilterProps){
     const [value, setValue] = useState(500); 
+    const [dressFilter, setDressFilter] = useState<Dress>();
+    const [categoryFilter, setCategoryFilter] = useState<Category>();
+    const [sizeFilter, setSizeFilter] = useState<Size[]>([]);
+    const [colorFilter, setColorFilter] = useState<string[]>([]);
+
     const min = 0;
     const max = 1000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(Number(e.target.value));
+    };
+
+    const handleDressFilter = (selectedDress: Dress) => {
+        setDressFilter(selectedDress);
+    };
+    const handleCategoryFilter = (selectedCategory: Category) => {
+        setCategoryFilter(selectedCategory);
+    };
+    const handleSizeFilter = (selectedSize: Size) => {
+        setSizeFilter(prev =>
+            prev.includes(selectedSize)
+                ? prev.filter(item => item !== selectedSize) 
+                : [...prev, selectedSize] 
+        );
+    };
+    const handleColorFilter = (selectedColor: string) => {
+        setColorFilter(prev =>
+            prev.includes(selectedColor)
+                ? prev.filter(item => item !== selectedColor) 
+                : [...prev, selectedColor] 
+        );
+        console.log(dressFilter, colorFilter, categoryFilter, sizeFilter)
     };
     return(
         
@@ -31,7 +60,15 @@ function Filter({toggleFilters}: FilterProps){
                 <div>
                     <ul className={styles.list}>
                         {category.map((element, index) => (
-                            <li key={index} className={styles.item}>{element}<span><img src='assets\images\icons\arrows\arrow-grey.svg'/></span></li>
+                            <li key={index} 
+                            className={styles.item}
+                            onClick={() => {handleCategoryFilter((Category[element as keyof typeof Category]))
+                                console.log(element)
+                            }} >
+                                
+                                {element}
+                                <span><img src='assets\images\icons\arrows\arrow-grey.svg'/></span>
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -51,12 +88,18 @@ function Filter({toggleFilters}: FilterProps){
                     <span className="range-value">${value}</span>
                     </div>
                 </div>
-                <div>
+                <div className={styles.colors}>
                     <h4 className={styles.title}>Colors<span></span></h4>
                     <div className={styles.colorWrapper}>
                         {colors.map((color, index) => (
                             <div key={index} className={styles.colorItem}>
-                                <input type="checkbox" id={color} name="color" value={color} className={styles.hiddenCheckbox} />
+                                <input 
+                                type="checkbox" 
+                                id={color} 
+                                name="color" 
+                                value={color} 
+                                className={styles.hiddenCheckbox} 
+                                onClick={() => handleColorFilter(color)}/>
                                 <label htmlFor={color} style={{ backgroundColor: color }} className={styles.colorLabel}></label>
                             </div>
 
@@ -69,7 +112,12 @@ function Filter({toggleFilters}: FilterProps){
                     <div className={styles.sizes}>
                         {Object.entries(Size).map(([key, value]) => (
                             <label key={key} htmlFor={key}>
-                                <input type="checkbox" value={key} name="size"/>
+                                <input 
+                                type="checkbox" 
+                                value={key} 
+                                name="size"
+                                onClick={() => handleSizeFilter((Size[key as keyof typeof Size]))}
+                                />
                             {value}
                           </label>
                         ))}
@@ -79,7 +127,12 @@ function Filter({toggleFilters}: FilterProps){
                     <h4 className={styles.title}>Dress<span></span></h4>
                     <ul className={styles.list}>
                     {dress.map((element, index) => (
-                        <li key={index} className={styles.item}>{element}<span><img src='assets\images\icons\arrows\arrow-grey.svg'/></span></li>
+                        <li 
+                        onClick={() => handleDressFilter((Dress[element as keyof typeof Dress]))} 
+                        key={index} 
+                        className={styles.item}>
+                            {element}<span><img src='assets\images\icons\arrows\arrow-grey.svg'/></span>
+                        </li>
                     ))}
                     </ul>
                 </div>

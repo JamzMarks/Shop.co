@@ -1,5 +1,5 @@
 export enum Category {
-    TShirt = 'T-Shirt',
+    TShirts = 'T-Shirt',
     Shorts = 'Shorts',
     Shirts = 'Shirts',
     Hoodie = 'Hoodie',

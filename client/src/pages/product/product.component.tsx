@@ -10,11 +10,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductReview from "./productReview/productReview.component";
 import ProductList from "../../components/layout/productList/productList.component";
 import { useReviews } from "../../hooks/useReview";
+import { useProduct } from "../../hooks/useProduct";
 
 function ProductPage() {
   const { id } = useParams();
   const productId = Number(id);  
-  const [product, setProducts] = useState<Product>();
+  const { product, loading: productLoading, error: productError } = useProduct(productId);
   const { reviews } = useReviews(productId);
   const [related, setRelated] = useState<Product[]>([]);
   const navigate = useNavigate();
@@ -22,39 +23,38 @@ function ProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
         window.scrollTo(0, 0);
-      try {
-        if (!id) {
-            navigate("/404");
-            return;
-          }
-          if (isNaN(productId)) {
-            navigate("/404"); 
-            return;
-          }
-
-        const fetchedData = await getProductById(productId);
-        if (!fetchedData) {
+        if (productError) {
+          console.error(productError);
           navigate("/404");
+          return;
         }
-        const fetchRelatedData = await getProductsByDress("Casual");
+      try {       
+        const fetchRelatedData = await getProductsByDress("Party");
         setRelated(fetchRelatedData);
-        setProducts(fetchedData);
       } catch (error) {
         console.error(error);
         navigate("/404");
       }
     };
 
-    fetchProduct();
-  }, [navigate]);
+    if (product && !productLoading && !productError) {
+      fetchProduct();
+    }
+  }, [product, productLoading, productError, navigate]);
 
-  if (!product) {
-    return null;
-  }
-
+  useEffect(() => {
+    if (productError || !product) {
+      navigate("/404");
+    }
+  }, [productError, product, navigate]);
+  
   return (
     <section className={styles.content}>
-      <ProductInfo product={product} />
+      {product ? (
+        <ProductInfo product={product} />
+      ) : (
+        <div>Loading...</div>
+      )}
       <ProductReview reviews={reviews}/>
         <ProductList title="You might also like" viewAll={false} max={4}/>
     </section>

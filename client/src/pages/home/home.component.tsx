@@ -5,20 +5,16 @@ import global from '../../assets/styles/globalStyles.module.css';
 import styles from './home.module.scss';
 import ProductList from '../../components/layout/productList/productList.component';
 import ReviewCard from "../../components/ui/reviewCard/reviewCard.component";
-import { useEffect, useState } from "react";
-import { Review } from "../../types/review.interface";
+import { useReviews } from "../../hooks/useReview";
 
 function Home(){
-    // const [reviews, setReviews] = useState<Review[]>
-    useEffect(() => {
-
-    })
+    const {reviews} = useReviews(1);
     return(
         <>
             <Thumb></Thumb>
             <Brands></Brands>
             <div className={`${global.container} ${styles.content}`}>
-                <div>
+                <div className={styles.productLists}>
                     <ProductList
                         title="New Arrivals"
                         viewAll={true}
@@ -45,8 +41,14 @@ function Home(){
                         </div> 
                     </div>
                     <div className={styles.reviewList}>
-                        {}
-                        {/* <ReviewCard review={}></ReviewCard> */}
+                        {reviews.map((element, index) => (
+                            <ReviewCard
+                            key={index}
+                            review={element}
+                            withDate={false}
+                            />
+
+                        ))}
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ function ProductCard({product}: ProductCardProps){
     return(
         <article className={styles.productCard}>
             <div className={styles.image} onClick={() => linkToProduct(product.id)}>
-                <img src={getImagePath(product.image[1])} alt={product.title} />
+                <img src={getImagePath(product.image[0])} alt={product.title} />
             </div>
             <div className={styles.details}>
                 <h3 className={styles.title}>{product.title.toLowerCase()}</h3>
