@@ -6,7 +6,11 @@ import styles from './filter.module.scss';
 const colors = ['green', 'red', 'blue', 'orange', 'lightblue', 'yellow', 'purple', 'pink' ,'white', 'black']
 const dress = ['Casual', 'Formal', 'Party', 'Gym']
 const category = ['T-Shirts', 'Shorts', 'Shirts', 'Hodie', 'Jeans']
-function Filter(){
+interface FilterProps {
+    toggleFilters: () => void;
+}
+
+function Filter({toggleFilters}: FilterProps){
     const [value, setValue] = useState(500); 
     const min = 0;
     const max = 1000;
@@ -20,6 +24,9 @@ function Filter(){
             <div className={styles.filters}>
                 <div className={styles.title}>
                     <h2>Filters</h2>
+                    <button onClick={toggleFilters}>
+                        <img src="assets\images\icons\close.svg" alt="close" />
+                    </button>
                 </div>
                 <div>
                     <ul className={styles.list}>
@@ -52,7 +59,7 @@ function Filter(){
                                 <input type="checkbox" id={color} name="color" value={color} className={styles.hiddenCheckbox} />
                                 <label htmlFor={color} style={{ backgroundColor: color }} className={styles.colorLabel}></label>
                             </div>
-                            // <input key={index} type='checkbox' id={element} name="color"></input>
+
                         ))}
                     </div>
                     
