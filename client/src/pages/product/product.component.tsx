@@ -43,10 +43,10 @@ function ProductPage() {
   }, [product, productLoading, productError, navigate]);
 
   useEffect(() => {
-    if (productError || !product) {
+    if (productError) {
       navigate("/404");
     }
-  }, [productError, product, navigate]);
+  }, [productError, navigate]);
   
   return (
     <section className={styles.content}>

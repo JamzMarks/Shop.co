@@ -11,9 +11,7 @@ interface ProductListProps {
     viewAll: boolean;
     max: number
   }
-
-
-
+  
 function ProductList({title, viewAll, max}: ProductListProps){
     const [prodcuts, setProducts] = useState<Product[]>([]);
     const [error, setError] = useState<string | null>(null);

@@ -14,8 +14,6 @@ export function useProduct(productId: number) {
       const response = await getProductById(productId);
       if (response) {
         setProduct(response);
-      }else{
-        throw new Error('Request failed');
       }
     } catch (error) {
       setError("Failed to load product");
