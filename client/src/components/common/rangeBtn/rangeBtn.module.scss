@@ -1,0 +1,31 @@
+.rangeSlider {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 250px;
+  }
+  
+  .rangeSlider input {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  
+  .rangeSlider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .rangeSlider label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
