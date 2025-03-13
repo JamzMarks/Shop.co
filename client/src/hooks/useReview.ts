@@ -20,7 +20,7 @@ export function useReviews(productId: number) {
         setReviews([]); 
       }
     } catch (error) {
-      setError("Erro ao buscar reviews");
+      setError("Failed to load reviews");
     } finally {
       setLoading(false);
     }

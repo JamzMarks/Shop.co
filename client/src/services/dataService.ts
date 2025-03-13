@@ -46,7 +46,7 @@ export async function getReviewById(id: number): Promise<Review>{
 
 export async function getProductsByDress(dress: string) {
   try {
-    const response = await axios.get(`${API_URL}/products/dress/${dress}`)
+    const response = await axios.get(`${API_URL}/category/${dress}`)
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar tamanhos:', error);

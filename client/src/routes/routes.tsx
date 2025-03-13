@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/home/home.component";
 import Product from "../pages/product/product.component";
@@ -8,16 +8,15 @@ import Category from "../pages/category/category.component";
 
 function AppRoutes(){
   return (
-    <Router>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart/>} />
-            <Route path="/404" element={<NotFound/>} />
-            <Route path="/category" element={<Category/>} />
-            <Route path="*" element={<Home />} />
-        </Routes>
-    </Router>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/category" element={<Category/>} />
+          <Route path="/category/:dress" element={<Category />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/404" element={<NotFound/>} />
+          <Route path="*" element={<Home />} />
+      </Routes>
   )
 };
 export default AppRoutes;

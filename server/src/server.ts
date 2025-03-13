@@ -56,7 +56,7 @@ app.get('/product/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: "Erro ao buscar produtos." });
     }
 })
-app.get('/products/dress/:dress', async (req: Request, res: Response) => {
+app.get('/category/:dress', async (req: Request, res: Response) => {
     const { dress } = req.params;
     const keyDress = compareDress(dress);
     

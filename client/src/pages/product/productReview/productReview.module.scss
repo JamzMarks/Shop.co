@@ -66,6 +66,17 @@
         justify-content: center;
     }
 }
+.filterBtn{
+    background-color: #F0F0F0;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    img{
+        width: max-content;
+        height: 100%;
+    }
+}
 
 @media (min-width: 768px) {
     .productReview{

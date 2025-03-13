@@ -19,9 +19,15 @@ function Newsletter(){
     }
       
     return(
-        <form id="newsLetterForm" className={styles.newsletter}  onSubmit={handleNewsletterSubmit}>
+        <form 
+        id="newsLetter" 
+        className={styles.newsletter}  
+        onSubmit={handleNewsletterSubmit}
+        aria-labelledby="newsletterFormTitle">
             
-            <h3 className={styles.title}>Stay upto date about our latest offers</h3>
+            <h3 id="newsletterFormTitle" className={styles.title}>
+                Stay upto date about our latest offers
+            </h3>
             <div className={styles.inputsContainer}>
                 <Input
                     inputStyle='white'
@@ -30,6 +36,7 @@ function Newsletter(){
                     inputIcon='email'
                     required={true}
                     value={email}
+                    ariaLabel="Enter your email address"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 ></Input>
                 <Button

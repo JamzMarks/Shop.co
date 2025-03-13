@@ -1,12 +1,13 @@
 .content{
     max-width: 1280px;
-    margin: 0 auto;
+    margin: 20px auto 36px auto;
     padding: 0 16px;
     display: grid;
     gap: 50px;
 }
 @media (min-width: 768px) {
     .content{
+        margin: 36px auto 78px auto;
         gap: 64px;
     }
 }

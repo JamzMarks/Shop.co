@@ -51,16 +51,11 @@ function ProductReview({reviews}: productReviewProps){
                 <div className={styles.hud}>
                     <h3>All Reviews <span>({reviews.length})</span></h3>
                     <div className={styles.button}>
-                        <Button
-                            text=''
-                            type='button'
-                            btnStyle='white'
-                        />
-                        <Button
-                            text='Latest'
-                            type='button'
-                            btnStyle='white'
-                        />
+                        <button className={styles.filterBtn}><img src="/assets\images\icons\filter.svg" alt="filter" /></button>
+                        <select name="cars" id="cars">
+                            <option value="Latest">Latest</option>
+                            <option value="Newest">Newest</option>
+                        </select>
                         <Button
                             text='Write a review'
                             type='button'
