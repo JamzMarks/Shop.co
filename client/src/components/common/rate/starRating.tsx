@@ -1,4 +1,4 @@
-import styles from "./StarRating.module.scss";
+import styles from "./starRating.module.scss";
 import { isDecimal } from "../../../utils/validator/decimal.validator";
 
 interface StarRatingProps {

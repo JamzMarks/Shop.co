@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './category.module.scss';
 import { Product } from '../../types/product.interface';
 import { useParams } from 'react-router-dom';
-import Filter from './filter/filter.component';
+import Filter, { PriceRange } from './filter/filter.component';
 import globals from '../../assets/styles/globalStyles.module.css';
 import CategoryList from './categoryList/categoryList.component';
 import { getProduct } from '../../services/dataService';
@@ -19,7 +19,7 @@ function Category(){
     const [showFilter, setShowFilter] = useState<boolean>(window.innerWidth > 1028);
     const params = useParams<{ dress?: string }>();
     const [appliedFilters, setAppliedFilters] = useState<{
-        price: number | null;
+        price: PriceRange | null;
         dress: Dress | null;
         category: CategoryType | null;
         size: Size[];
@@ -106,7 +106,7 @@ function Category(){
         );
       };
     const handleApplyFilters = (filters: {
-        price: number;
+        price: PriceRange
         dress: Dress | null;
         category: CategoryType | null;
         size: Size[];
@@ -118,17 +118,17 @@ function Category(){
     return(
         <section className={globals.container}>
             <Breadcrumb
-            items={[
-                {
-                label: "home",
-                path: "/"
-                },
-                {
-                label: `${appliedFilters.dress ? appliedFilters.dress : 'Category'}`,
-                path: `/category${appliedFilters.dress ? `/${appliedFilters.dress}` : ''}`
-                }
+                items={[
+                    {
+                    label: "home",
+                    path: "/"
+                    },
+                    {
+                    label: `${appliedFilters.dress ? appliedFilters.dress : 'Category'}`,
+                    path: `/category${appliedFilters.dress ? `/${appliedFilters.dress}` : ''}`
+                    }
 
-            ]}
+                ]}
             />
             <div className={styles.content}>
             {showFilter && <Filter toggleFilters={toggleFilters} onApplyFilters={handleApplyFilters}/>}

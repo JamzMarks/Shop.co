@@ -1,7 +1,6 @@
 import ProductInfo from "./info/info.component";
 import styles from "./product.module.scss";
 import {
-  getProductById,
   getProductsByDress
 } from "../../services/dataService";
 import { useEffect, useState } from "react";
@@ -18,7 +17,7 @@ function ProductPage() {
   const productId = Number(id);  
   const { product, loading: productLoading, error: productError } = useProduct(productId);
   const { reviews } = useReviews(productId);
-  const [related, setRelated] = useState<Product[]>([]);
+  const [_, setRelated] = useState<Product[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {

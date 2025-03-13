@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../../../components/common/button/button.component";
 import { Size } from "../../../types/size-type";
 import styles from "./filter.module.scss";
 import { Dress } from "../../../types/dress-type";
 import { Category } from "../../../types/category-type";
+import RangeSlider from "../../../components/common/rangeBtn/rangeInput";
 
 const colors = [
   { name: "green", hex: "#00C12B" },
@@ -20,10 +21,14 @@ const colors = [
 const dress = ["Casual", "Formal", "Party", "Gym"];
 const category = ["T-Shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
 
+export interface PriceRange{
+  min: number,
+  max: number
+}
 interface FilterProps {
   toggleFilters: () => void;
   onApplyFilters: (filters: {
-    price: number;
+    price: PriceRange;
     dress: Dress | null;
     category: Category | null;
     size: Size[];
@@ -32,18 +37,12 @@ interface FilterProps {
 }
 
 function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
-  const [value, setValue] = useState(500);
   const [dressFilter, setDressFilter] = useState<Dress | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<Category | null>(null);
   const [sizeFilter, setSizeFilter] = useState<Size[]>([]);
   const [colorFilter, setColorFilter] = useState<string[]>([]);
-
-  const min = 0;
-  const max = 1000;
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(e.target.value));
-  };
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 2000 });
+  
 
   const handleDressFilter = (selectedDress: Dress) => {
     setDressFilter(selectedDress);
@@ -76,7 +75,7 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
 
   const applyFilters = () => {
     onApplyFilters({
-      price: value,
+      price: priceRange,
       dress: dressFilter,
       category: categoryFilter,
       size: sizeFilter,
@@ -123,20 +122,14 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
             Price<span></span>
           </h4>
           <div className="range-container">
-            <input
-              type="range"
-              min={min}
-              max={max}
-              value={value}
-              step="10"
-              onChange={handleChange}
-              style={{
-                background: `linear-gradient(to right, black ${
-                  (value / max) * 100
-                }%, #F0F0F0 ${(value / max) * 100}%)`,
-              }}
+            <RangeSlider
+            max={0}
+            min={2000}
+            step={10}
+            values={priceRange} 
+            onChange={setPriceRange} 
             />
-            <span className="range-value">${value}</span>
+            {/* <span className="range-value">${value}</span> */}
           </div>
         </div>
         <div className={styles.colors}>

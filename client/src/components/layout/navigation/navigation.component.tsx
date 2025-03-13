@@ -3,7 +3,7 @@ import NavButtons from './navButton/navButton.component';
 import styles from './navigation.module.scss'
 import globals from '../../../assets/styles/globalStyles.module.css';
 import MenuMobile from './menuMobile/menuMobile.component';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
 
 function Navigation(){
     const navigate = useNavigate();
