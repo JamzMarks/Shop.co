@@ -37,9 +37,23 @@
             .item{
                 cursor: pointer;
                 width: 100%;
-                display: flex;
-                justify-content: space-between;
                 transition: 0.3s ease;
+                input{
+                    display: none;
+                }
+                label{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between; 
+                }
+                label:has(input:checked) {
+                    font-weight: bolder;
+                    color: black;
+                }
+                label:focus-within {
+                    font-weight: bolder;
+                    color: black;
+                }
             }
             .item:hover{
                 color: black;

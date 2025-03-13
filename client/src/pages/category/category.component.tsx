@@ -10,7 +10,7 @@ import SortBy from '../../components/common/sortBy/sortBy.component';
 import { Size } from '../../types/size-type';
 import { Dress } from '../../types/dress-type';
 import { Category as CategoryType } from '../../types/category-type';
-import { getSizeKey, sizeValidator } from '../../utils/validator/Size-validator';
+import { getSizeKey } from '../../utils/validator/Size-validator';
 
 function Category(){
     const [products, setProducts] = useState<Product[]>([]);

@@ -47,10 +47,12 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
 
   const handleDressFilter = (selectedDress: Dress) => {
     setDressFilter(selectedDress);
+    
   };
 
   const handleCategoryFilter = (selectedCategory: Category) => {
     setCategoryFilter(selectedCategory);
+    console.log(selectedCategory)
   };
 
   const handleSizeFilter = (selectedSize: Size) => {
@@ -93,22 +95,27 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
         </div>
         <div>
           <ul className={styles.list}>
-            {category.map((element, index) => (
-              <li
-                key={index}
-                className={styles.item}
-                onClick={() => handleCategoryFilter(element as Category)}
-              >
-                {element}
-                <span>
-                  <img
-                    src="/assets/images/icons/arrows/arrow-grey.svg"
-                    alt="arrow icon"
-                  />
-                </span>
-                
-              </li>
-            ))}
+          {category.map((element, index) => (
+                <li key={index} className={styles.item}>
+                    <label htmlFor={element}>
+                    <p>{element}</p>
+                    <span>
+                        <img
+                        src="/assets/images/icons/arrows/arrow-grey.svg"
+                        alt="arrow icon"
+                        />
+                    </span>
+                    <input
+                        type="radio"
+                        id={element} 
+                        name="category"
+                        value={element}
+                        checked={categoryFilter === element} 
+                        onChange={() => handleCategoryFilter(element as Category)} 
+                    />
+                    </label>
+                </li>
+                ))}
           </ul>
         </div>
         <div className={styles.priceWrapper}>
@@ -185,17 +192,26 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
           <ul className={styles.list}>
             {dress.map((element, index) => (
               <li
-                onClick={() => handleDressFilter(element as Dress)}
                 key={index}
                 className={styles.item}
               >
-                {element}
-                <span>
-                  <img
-                    src="/assets/images/icons/arrows/arrow-grey.svg"
-                    alt="arrow icon"
-                  />
-                </span>
+                <label htmlFor={element}>
+                    <p>{element}</p>
+                    <span>
+                        <img
+                        src="/assets/images/icons/arrows/arrow-grey.svg"
+                        alt="arrow icon"
+                        />
+                    </span>
+                    <input
+                        type="radio"
+                        id={element} 
+                        name="category"
+                        value={element}
+                        checked={categoryFilter === element} 
+                        onChange={() => handleCategoryFilter(element as Category)}
+                    />
+                    </label>
               </li>
             ))}
           </ul>

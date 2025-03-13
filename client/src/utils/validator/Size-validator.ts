@@ -12,7 +12,7 @@ export function sizeValidator(key: string): Size | undefined {
 }
 
 export function getSizeKey(value: string): keyof typeof Size | undefined {
-    const sizeEntry = Object.entries(Size).find(([key, val]) => val === value);
+    const sizeEntry = Object.entries(Size).find(([_, val]) => val === value);
     return sizeEntry ? sizeEntry[0] as keyof typeof Size : undefined;
 }
 
