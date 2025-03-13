@@ -51,8 +51,8 @@ function ProductReview({reviews}: productReviewProps){
                 <div className={styles.hud}>
                     <h3>All Reviews <span>({reviews.length})</span></h3>
                     <div className={styles.button}>
-                        <button className={styles.filterBtn}><img src="/assets\images\icons\filter.svg" alt="filter" /></button>
-                        <select name="cars" id="cars">
+                        <button type="button" className={styles.filterBtn}><img src="/assets\images\icons\filter.svg" alt="filter" /></button>
+                        <select title="Sort by" name="sortBy" id="sortBy" className={styles.sortBy}>
                             <option value="Latest">Latest</option>
                             <option value="Newest">Newest</option>
                         </select>

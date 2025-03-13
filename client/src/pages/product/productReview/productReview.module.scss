@@ -47,6 +47,21 @@
     .button{
         display: flex;
         gap: 8px;
+        justify-content: center;
+        align-items: center;
+        .sortBy{
+            background-color: #F0F0F0;
+            border-radius: 62px;
+            padding: 5px 5%;
+            border: none;
+            outline: none;
+            color: black;
+            width: 120px;
+            font-size: 16px;
+            cursor: pointer;
+            height: 100%;
+            display: none;
+        }
     }
 }
 .content{
@@ -69,13 +84,21 @@
 .filterBtn{
     background-color: #F0F0F0;
     color: black;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer;
     img{
-        width: max-content;
-        height: 100%;
+        max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain;
     }
+}
+.filterBtn:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @media (min-width: 768px) {
@@ -88,6 +111,13 @@
         .reviewList{
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+        }
+    }
+    .hud{
+        .button{
+            .sortBy{
+                display: initial;
+            }
         }
     }
 }

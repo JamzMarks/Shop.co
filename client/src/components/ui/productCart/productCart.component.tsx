@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getProductById } from "../../../services/dataService";
 import { getImagePath } from "../../../utils/getImage";
 import { sizeValidator } from "../../../utils/validator/Size-validator";
+import { getClosestColor } from "../../../utils/nearColor";
 
 interface ProductCardProps {
   productBuy: ProductCart;
@@ -63,7 +64,7 @@ function ProductCartItem({ productBuy, onRemove, onUpdate }: ProductCardProps) {
                   Size:<span>{sizeValidator(productBuy.size as string)}</span>
                 </p>
                 <p className={styles.spec}>
-                  Color: <span>{productBuy.color}</span>
+                  Color: <span>{getClosestColor(productBuy.color)}</span>
                 </p>
               </div>
             </div>

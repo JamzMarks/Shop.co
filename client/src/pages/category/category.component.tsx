@@ -11,12 +11,13 @@ import { Size } from '../../types/size-type';
 import { Dress } from '../../types/dress-type';
 import { Category as CategoryType } from '../../types/category-type';
 import { getSizeKey } from '../../utils/validator/Size-validator';
+import { getClosestColor } from '../../utils/nearColor';
+import Breadcrumb from '../../components/common/breadCrumb/breadcrumb.component';
 
 function Category(){
     const [products, setProducts] = useState<Product[]>([]);
     const [showFilter, setShowFilter] = useState<boolean>(window.innerWidth > 1028);
     const params = useParams<{ dress?: string }>();
-    
     const [appliedFilters, setAppliedFilters] = useState<{
         price: number | null;
         dress: Dress | null;
@@ -92,9 +93,18 @@ function Category(){
                     : selectedSizeKeys.includes(getSizeKey(product.size as string) as unknown as keyof typeof Size)
             );
         }
+        if (appliedFilters.color.length !== 0) {
+            filteredProducts = filterProductsByColor(filteredProducts, appliedFilters.color)
+          }
         return filteredProducts;
     }
-
+    const filterProductsByColor = (products: Product[], selectedColors: string[]) => {
+        return products.filter(product =>
+          product.color.some(productColorHex =>
+            selectedColors.includes(getClosestColor(productColorHex))
+          )
+        );
+      };
     const handleApplyFilters = (filters: {
         price: number;
         dress: Dress | null;
@@ -107,6 +117,19 @@ function Category(){
     
     return(
         <section className={globals.container}>
+            <Breadcrumb
+            items={[
+                {
+                label: "home",
+                path: "/"
+                },
+                {
+                label: `${appliedFilters.dress ? appliedFilters.dress : 'Category'}`,
+                path: `/category${appliedFilters.dress ? `/${appliedFilters.dress}` : ''}`
+                }
+
+            ]}
+            />
             <div className={styles.content}>
             {showFilter && <Filter toggleFilters={toggleFilters} onApplyFilters={handleApplyFilters}/>}
                 <div className={styles.productSection}>

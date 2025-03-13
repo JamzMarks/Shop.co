@@ -28,7 +28,6 @@ function Input({ placeholder, type, required, inputStyle, inputIcon, value, onCh
             onChange={onChange}
         />
     )
-  // <input id="NLEmailInput" class="newsInput inputFields emailInput inputWhite" type="email" placeholder="Enter your email adress" required/>
 }
 
 export default Input;

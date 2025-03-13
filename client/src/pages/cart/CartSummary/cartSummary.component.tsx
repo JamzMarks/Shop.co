@@ -1,29 +1,47 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../../components/common/button/button.component';
 import Input from '../../../components/common/input/input.component';
 import styles from '../cart.module.scss';
+import { ProductCart } from '../../../types/product.interface';
 
-function CartSummary(){
-    const [promo, setPromo] = useState('')
+interface CartSummaryProps{
+    products: ProductCart[]
+}
+
+function CartSummary({products}: CartSummaryProps){
+    const [promo, setPromo] = useState('');
+    const [orderValue, setOrderValue] = useState(0);
+    const [orderDiscount, setOrderDiscount] = useState<number>(0);
+    const deliveryFee = 15;
+    useEffect(() => {
+        const totalPrice = products.reduce((sum, product) => sum + (product.price * product.count), 0);
+        setOrderValue(totalPrice);
+
+        const priceWithDiscount = products.reduce((sum, product) => sum + (product.price - (product.price * (product.discount/100))) * product.count,0)
+        const discountPercentage = ((totalPrice - priceWithDiscount) / totalPrice) * 100;
+        setOrderDiscount(discountPercentage);
+    }, [products]);
+
+    
     return(
         <div className={styles.buyInfo}>
                         <h2 className={styles.title}>Order Summary</h2>
                         <div className={styles.orderWrapper}>
                             <div className={styles.orderItem}>
                                 <p>Subtotal</p>
-                                <p className={styles.price}>$128</p> 
+                                <p className={styles.price}>${orderValue}</p> 
                             </div>
                             <div className={styles.orderItem}>
-                                <p>Discount <span>(-percentage%)</span></p>
-                                <p className={`${styles.price} ${styles.red}`}>-$128</p> 
+                                <p>Discount <span>(-{Math.round(orderDiscount)}%)</span></p>
+                                <p className={`${styles.price} ${styles.red}`}>-${Math.round(orderValue * (orderDiscount/100))}</p> 
                             </div>
                             <div className={styles.orderItem}>
                                 <p>Delivery Fee</p>
-                                <p className={styles.price}>$15</p> 
+                                <p className={styles.price}>${deliveryFee}</p> 
                             </div>
                             <div className={`${styles.orderItem} ${styles.total}`}>
                                 <p>Total</p>
-                                <p className={styles.price}>$15</p> 
+                                <p className={styles.price}>${(orderValue - (orderValue * (orderDiscount/100))) + deliveryFee}</p> 
                             </div>
                         </div>
                         <div className={styles.promoBtns}>
@@ -35,6 +53,7 @@ function CartSummary(){
                                     value={promo}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPromo(e.target.value)}
                                     type="text"
+                                    ariaLabel='Promo code'
                                 />
                                 <Button
                                     type="button"
