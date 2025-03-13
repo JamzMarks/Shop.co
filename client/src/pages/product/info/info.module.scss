@@ -94,7 +94,6 @@
     } 
 
     .productUI{
-
         .funcTitle{
             color: #00000099;
             font-size: 14px;
@@ -103,10 +102,11 @@
             display: grid;
             gap: 16px;
             .sizes{
-                display: flex;
+                display: grid;
                 gap: 12px;
+                grid-template-columns: repeat(4, 1fr);
                 .item{
-                    width: 200%;
+                    width: 100%;
                     max-width: 200px;
                     label{
                         cursor: pointer;
@@ -217,6 +217,19 @@
             
         } 
     }
+    .info{
+
+        .productUI{
+              
+            .sizeWrapper{
+                display: grid;
+            gap: 16px;  
+                .sizes{
+                    display: flex;
+                    gap: 12px;
+                    flex-wrap: nowrap;
+                }}}
+            }
   }
 @media (min-width: 1028px) {
     .product{

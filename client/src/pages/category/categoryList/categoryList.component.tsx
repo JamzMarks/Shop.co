@@ -38,6 +38,7 @@ function CategoryList({products}: CategoryProps){
     return(
         <>
         <section className={styles.categorySection}>
+        
             {currentProducts.map((element, index) => (
                 <ProductCard
                 key={index}
@@ -45,7 +46,7 @@ function CategoryList({products}: CategoryProps){
                 />
             ))}
         </section>
-         <div className={styles.pagination}>
+        <div className={styles.pagination}>
             <button className={styles.paginationBtns} type="button" name="previous" onClick={prevPage} disabled={currentPage === 1}>
                 <img src="assets\images\icons\arrows\left-arrow.svg" alt="left arrow" />
                 Previous

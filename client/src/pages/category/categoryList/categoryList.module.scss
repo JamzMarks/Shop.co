@@ -1,9 +1,24 @@
 .categorySection{
-    display: flex;
+    width: 100%;
+    display: grid;
     flex-wrap: wrap;
-    justify-content: space-between;
+    grid-template-columns: 1fr;
     row-gap: 24px;
-    // column-gap: 14px;
+    column-gap: 14px;
+}
+@media (min-width: 420px) {
+    .categorySection{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 768px) {
+    .categorySection{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+}
+@media (min-width: 1028px) {
+
 }
 
 .pagination{

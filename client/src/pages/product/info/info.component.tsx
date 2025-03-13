@@ -24,7 +24,9 @@ function ProductInfo({ product }: ProductItem) {
     productId: product.id,  
     count: count,           
     color: selectedColor,  
-    size: selectedSize as keyof Size   
+    size: selectedSize as keyof Size,
+    price: product.price,
+    discount: product.discount ? product.discount : 0
   }
   const navigate = useNavigate();
   return (

@@ -20,5 +20,7 @@ export interface ProductCart{
     productId: number,
     count: number,
     color: string,
-    size: keyof Size
+    size: keyof Size,
+    price: number,
+    discount: number
 }

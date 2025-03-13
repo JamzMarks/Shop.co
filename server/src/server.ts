@@ -7,6 +7,10 @@ import { upload } from './multer';
 import cors from 'cors';
 import { Dress } from './entities/types/dress-type';
 import { compareDress } from './utils/compareParams';
+import path from 'path';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -15,11 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 const uploadMiddleware = upload.array('images', 3);
 
-
+const dbPath = process.env.DATABASE_PATH 
+  ? path.resolve(process.env.DATABASE_PATH) 
+  : path.join(__dirname, "..", "database.db");
 
 const dataSource = new DataSource({
     type: "sqlite",   
-    database: "database.db",  
+    database: dbPath,  
     entities: [Product, Review],  
     synchronize: true,         
     logging: false,           

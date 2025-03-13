@@ -208,8 +208,8 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
                         id={element} 
                         name="category"
                         value={element}
-                        checked={categoryFilter === element} 
-                        onChange={() => handleCategoryFilter(element as Category)}
+                        checked={dressFilter === element} 
+                        onChange={() => handleDressFilter(element as Dress)}
                     />
                     </label>
               </li>

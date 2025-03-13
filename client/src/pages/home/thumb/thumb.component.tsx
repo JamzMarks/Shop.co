@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/common/button/button.component';
 import styles from './thumb.module.scss';
 
 function Thumb(){
+    const navigate = useNavigate();
     return(
         <section className={styles.thumb}>
             <div className={styles.container}>
@@ -12,7 +14,8 @@ function Thumb(){
                         <Button
                             type='button'
                             text='Shop Now'
-                            btnStyle='black2'
+                            btnStyle='black3'
+                            onClick={() => navigate('/category')}
                         />
                     </div>
                     <div className={styles.numbers}>

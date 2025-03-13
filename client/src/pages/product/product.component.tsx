@@ -11,6 +11,7 @@ import ProductReview from "./productReview/productReview.component";
 import ProductList from "../../components/layout/productList/productList.component";
 import { useReviews } from "../../hooks/useReview";
 import { useProduct } from "../../hooks/useProduct";
+import Breadcrumb from "../../components/common/breadCrumb/breadcrumb.component";
 
 function ProductPage() {
   const { id } = useParams();
@@ -50,6 +51,23 @@ function ProductPage() {
   
   return (
     <section className={styles.content}>
+      <Breadcrumb
+      items={[
+        {
+          label: "home",
+          path: "/"
+        },
+        {
+          label: 'Shop',
+          path: '/category'
+        },
+        {
+          label: `${product?.dress}`,
+          path: `/category/${product?.dress}`
+        }
+
+      ]}
+      />
       {product ? (
         <ProductInfo product={product} />
       ) : (

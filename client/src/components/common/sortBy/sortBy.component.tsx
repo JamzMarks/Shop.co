@@ -1,10 +1,11 @@
+import styles from './sortBy.module.scss';
 function SortBy(){
     return(
         <>
-        <label htmlFor="sortByTime">Sort by time:</label>
-        <select name="sortByTime" id="sortByTime">
-            <option value="Latest">Latest</option>
-            <option value="Newest">Newest</option>
+        <label htmlFor="sortByTime" className={styles.sortBy}>Sort by time:</label>
+        <select name="sortByTime" id="sortByTime" className={styles.selectSortBy}>
+            <option value="Latest">Most Popular</option>
+            <option value="Newest">Least Popular</option>
         </select>
         </>
     )

@@ -45,6 +45,7 @@
                     width: 100%;
                     display: flex;
                     justify-content: space-between; 
+                    cursor: pointer;
                 }
                 label:has(input:checked) {
                     font-weight: bolder;

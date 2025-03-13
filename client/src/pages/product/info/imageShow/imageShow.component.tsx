@@ -8,7 +8,7 @@ function ImageShow({images}: ImageShowProps) {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   useEffect(() => {
     setSelectedImage(images[0])
-  })
+  }, [images])
   return (
     <div className={styles.imageWrapper}>
       <div className={styles.image}>

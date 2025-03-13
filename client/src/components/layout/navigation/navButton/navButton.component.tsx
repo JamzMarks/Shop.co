@@ -16,6 +16,7 @@ function NavButtons(){
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
                     value={search}
                     inputStyle='gray'
+                    ariaLabel='Search field'
                 />
             </div>
             <button type="button" className={`${styles.navBtn} ${styles.searchMobile}`}><img src="assets\images\icons\search\blackSearch.svg" alt="search"/></button>

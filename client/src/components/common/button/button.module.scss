@@ -12,6 +12,7 @@
     outline: none;
     min-width: fit-content;
     padding: auto 10%;
+    min-height: 38px;
     
     /* transition: box-shadow 0.3s ease, transform 0.2s ease; */
 }
@@ -62,4 +63,21 @@
 }   
 .black2:hover{
     transform: translateY(-2px);
+}
+
+.black3{
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.15s ease-in;
+    max-width: 100%;
+}   
+.black3:hover{
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    .black3{
+        max-width: 210px;
+    } 
 }

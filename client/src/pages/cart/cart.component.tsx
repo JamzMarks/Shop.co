@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { getFromLocalStorage, removeItemFromLocalStorage } from "../../services/localStorage";
 import { ProductCart } from "../../types/product.interface";
 import CartSummary from "./CartSummary/cartSummary.component";
+import Breadcrumb from "../../components/common/breadCrumb/breadcrumb.component";
 
 function Cart(){
     const [retrievedData, setRetrievedData] = useState<ProductCart[]>([]);
@@ -13,7 +14,6 @@ function Cart(){
         const storedValue = getFromLocalStorage();
         if (storedValue) {
             setRetrievedData(storedValue);
-            
         }
     }, []);
     
@@ -28,11 +28,24 @@ function Cart(){
             item.productId === productId ? { ...item, ...updatedData } : item
           )
         );
-        console.log(retrievedData)
       };
     return(
         <section className={styles.cart}>
             <div className={`${globals.container} ${styles.container}`}>
+            <Breadcrumb
+            items={[
+                {
+                label: "home",
+                path: "/"
+                },
+                {
+                label: 'Cart',
+                path: '/Cart',
+                current: true
+                }
+
+            ]}
+            />
                 <h1 className={styles.pageTitle}>Your Cart</h1>
                 <div className={styles.content}>
                     <div className={styles.items}>
@@ -45,7 +58,9 @@ function Cart(){
                             />
                         ))}
                     </div>
-                    <CartSummary></CartSummary>
+                    <CartSummary
+                    products={retrievedData}
+                    />
                 </div>
             </div>
             

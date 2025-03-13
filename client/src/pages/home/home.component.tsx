@@ -6,13 +6,17 @@ import styles from './home.module.scss';
 import ProductList from '../../components/layout/productList/productList.component';
 import ReviewCard from "../../components/ui/reviewCard/reviewCard.component";
 import { useReviews } from "../../hooks/useReview";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Home(){
     const {reviews} = useReviews(1);
     const [startIndex, setStartIndex] = useState(0);
-    const visibleCount = 3;
-
+    const getVisibleCount = () => {
+        if (window.innerWidth < 768) return 1;
+        if (window.innerWidth < 1028) return 2;
+        return 3;
+      };
+    const [visibleCount, setVisibleCount] = useState(getVisibleCount());
     const moveSlider = (direction: "next" | "prev") => {
         if (direction === "next") {
           if (startIndex + visibleCount < reviews.length) {
@@ -24,6 +28,12 @@ function Home(){
           }
         }
       };
+      useEffect(() => {
+        const handleResize = () => setVisibleCount(getVisibleCount());
+    
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
       const visibleReviews = reviews.slice(startIndex, startIndex + visibleCount);
     return(
         <>
