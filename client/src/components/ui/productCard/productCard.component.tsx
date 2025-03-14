@@ -25,9 +25,9 @@ function ProductCard({product}: ProductCardProps){
                     showRate={true}
                 />
                 <div className={styles.priceWrapper}>
-                    <p className={styles.price}>{getDiscountPrice(
+                    <p className={styles.price}>{(getDiscountPrice(
                                     product.price, product.discount ? product.discount : 0 
-                                    )}</p>
+                                    )).toFixed(2)}</p>
                     {product.discount !== 0 && (
                        <>
                         <p className={styles.discount}>{product.price}</p>
