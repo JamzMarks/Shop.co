@@ -41,7 +41,7 @@ function CartSummary({products}: CartSummaryProps){
                             </div>
                             <div className={`${styles.orderItem} ${styles.total}`}>
                                 <p>Total</p>
-                                <p className={styles.price}>${(orderValue - (orderValue * (orderDiscount/100))) + deliveryFee}</p> 
+                                <p className={styles.price}>${((orderValue - (orderValue * (orderDiscount/100))) + deliveryFee).toFixed(2)}</p> 
                             </div>
                         </div>
                         <div className={styles.promoBtns}>
