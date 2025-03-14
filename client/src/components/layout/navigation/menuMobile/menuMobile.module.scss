@@ -22,24 +22,14 @@ button{
       z-index: 2;
       transition: 0.4s ease-in-out;
       position: relative;
+      z-index: 99;
     }
   }
   
   .menuCheckbox {
     display: none;
+    
   }
-  .menuCheckbox:checked + .menuIcon span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 7px;
-  }
-  .menuCheckbox:checked + .menuIcon span:nth-child(2) {
-    opacity: 0;
-  }
-  .menuCheckbox:checked + .menuIcon span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: -7px;
-  }
-  
   .menuMobile .links a {
     color: #000000;
     font-weight: 700;
@@ -54,36 +44,4 @@ button{
     .displayNoneMobile {
       display: none;
     }
-  }
-
-  .menuMobile {
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    position: absolute;
-    text-align: left;
-    width: 100%;
-    height: 100vh;
-    box-shadow: 0 0 10px #85888c;
-    margin: -50px 0 0 -50px;
-    padding-top: 70px;
-    padding-left: 20%;
-    padding-right: 10%;
-    background-color: #f5f6fa;
-    -webkit-font-smoothing: antialiased;
-    transform-origin: 0% 0%;
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  }
-  .menuMobile .links {
-    transition-delay: 1.5s;
-    align-self: center;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    
-  }
-  .menuMobile .links:not(:last-child) {
-    border-bottom: 1px solid rgba(70, 70, 70, 0.432);
   }

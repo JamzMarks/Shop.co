@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styles from './rangeBtn.module.scss';
+import styles from "./rangeBtn.module.scss";
 
 interface RangeSliderProps {
   min: number;
@@ -9,36 +8,40 @@ interface RangeSliderProps {
   onChange: (values: { min: number; max: number }) => void;
 }
 
-const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, step = 1, values, onChange }) => {
-  const [minValue, setMinValue] = useState(values.min);
-  const [maxValue, setMaxValue] = useState(values.max);
-
-  useEffect(() => {
-    setMinValue(values.min);
-    setMaxValue(values.max);
-  }, [values]);
-
+function RangeSlider({
+  min,
+  max,
+  step = 10,
+  values,
+  onChange,
+}: RangeSliderProps) {
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(event.target.value), maxValue - step);
-    setMinValue(value);
-    onChange({ min: value, max: maxValue });
+    const newMin = Math.min(Number(event.target.value), values.max - step);
+    onChange({ ...values, min: newMin });
   };
 
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(Number(event.target.value), minValue + step);
-    setMaxValue(value);
-    onChange({ min: minValue, max: value });
+    const newMax = Math.max(Number(event.target.value), values.min + step);
+    onChange({ ...values, max: newMax });
   };
 
   return (
     <div className={styles.rangeSlider}>
       <div className={styles.sliderContainer}>
+        <div className={styles.sliderTrack} />
+        <div
+          className={styles.sliderActive}
+          style={{
+            left: `${((values.min - min) / (max - min)) * 100}%`,
+            right: `${100 - ((values.max - min) / (max - min)) * 100}%`,
+          }}
+        />
         <input
           type="range"
           min={min}
           max={max}
           step={step}
-          value={minValue}
+          value={values.min}
           onChange={handleMinChange}
           className={styles.thumb}
         />
@@ -47,20 +50,16 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, step = 1, values, o
           min={min}
           max={max}
           step={step}
-          value={maxValue}
+          value={values.max}
           onChange={handleMaxChange}
           className={styles.thumb}
         />
-        <div className={styles.sliderTrack} style={{
-          left: `${((minValue - min) / (max - min)) * 100}%`,
-          right: `${100 - ((maxValue - min) / (max - min)) * 100}%`
-        }}></div>
       </div>
       <div className={styles.values}>
-        <span>${minValue}</span> - <span>${maxValue}</span>
+        <span>${values.min}</span> - <span>${values.max}</span>
       </div>
     </div>
   );
-};
+}
 
 export default RangeSlider;
