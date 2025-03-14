@@ -19,13 +19,13 @@ function Category(){
     const [showFilter, setShowFilter] = useState<boolean>(window.innerWidth > 1028);
     const params = useParams<{ dress?: string }>();
     const [appliedFilters, setAppliedFilters] = useState<{
-        price: PriceRange | null;
+        price: PriceRange ;
         dress: Dress | null;
         category: CategoryType | null;
         size: Size[];
         color: string[];
     }>({
-        price: null,
+        price: {min: 0, max: 1000},
         dress: params.dress ? params.dress as Dress : null,
         category: null,
         size: [],
@@ -96,6 +96,7 @@ function Category(){
         if (appliedFilters.color.length !== 0) {
             filteredProducts = filterProductsByColor(filteredProducts, appliedFilters.color)
           }
+        filteredProducts = filteredProducts.filter(product => product.price < appliedFilters.price?.max && product.price > appliedFilters.price?.min)
         return filteredProducts;
     }
     const filterProductsByColor = (products: Product[], selectedColors: string[]) => {

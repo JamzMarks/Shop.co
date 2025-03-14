@@ -15,7 +15,7 @@ function Navigation(){
                 <MenuMobile></MenuMobile>
                 <h1 className={globals.logo} onClick={() => navigate('/')}>Shop.co</h1>
             </div>
-            <ListLinks></ListLinks>
+            <ListLinks mobile={false}></ListLinks>
             <NavButtons></NavButtons>
         </nav>
     )

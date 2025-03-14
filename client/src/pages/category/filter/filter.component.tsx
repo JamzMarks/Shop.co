@@ -41,7 +41,7 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
   const [categoryFilter, setCategoryFilter] = useState<Category | null>(null);
   const [sizeFilter, setSizeFilter] = useState<Size[]>([]);
   const [colorFilter, setColorFilter] = useState<string[]>([]);
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 2000 });
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   
 
   const handleDressFilter = (selectedDress: Dress) => {
@@ -123,13 +123,12 @@ function Filter({ toggleFilters, onApplyFilters }: FilterProps) {
           </h4>
           <div className="range-container">
             <RangeSlider
-            max={0}
-            min={2000}
-            step={10}
-            values={priceRange} 
-            onChange={setPriceRange} 
-            />
-            {/* <span className="range-value">${value}</span> */}
+              max={1000}
+              min={0}
+              step={10}
+              values={priceRange} 
+              onChange={setPriceRange} 
+              />
           </div>
         </div>
         <div className={styles.colors}>
